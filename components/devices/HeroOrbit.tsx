@@ -3,13 +3,18 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { Float } from "@/components/motion/Float";
-import { ORBIT_APPS, ORBIT_TILES } from "@/content/heroOrbit";
+import {
+  ORBIT_APPS,
+  ORBIT_RINGS,
+  ORBIT_TILES,
+} from "@/content/heroOrbit";
 
 /**
  * Bevel-style living hero cluster (desktop only): a phone whose screen
- * cross-fades through real client apps, ringed by levitating tech-stack tiles
- * on faint orbital arcs, with a caption card synced to the current app.
+ * cross-fades through real client apps, encircled by tech-stack tiles that
+ * orbit on slowly rotating concentric rings (each tile counter-rotates to
+ * stay upright). The phone sits above the rings, so the left arc passes
+ * behind it — keeping the visible tiles in the open space to its right.
  */
 export function HeroOrbit({ reduce }: { reduce: boolean }) {
   const [active, setActive] = useState(0);
@@ -18,7 +23,7 @@ export function HeroOrbit({ reduce }: { reduce: boolean }) {
     if (reduce) return;
     const id = setInterval(
       () => setActive((i) => (i + 1) % ORBIT_APPS.length),
-      3000,
+      4800,
     );
     return () => clearInterval(id);
   }, [reduce]);
@@ -33,27 +38,83 @@ export function HeroOrbit({ reduce }: { reduce: boolean }) {
       transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className="relative hidden h-[34rem] lg:block"
     >
-      {/* teal radial glow */}
-      <div className="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle_at_55%_50%,rgba(1,194,187,0.16),transparent_62%)]" />
+      {/* teal radial glow, centred on the orbit */}
+      <div className="pointer-events-none absolute left-[58%] top-1/2 -z-10 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(1,194,187,0.16),transparent_62%)]" />
 
-      {/* faint concentric arc guides, centered behind the phone */}
-      <div className="pointer-events-none absolute left-[26%] top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-[24rem] w-[24rem] rounded-full border border-ink/[0.06]" />
-        <div className="absolute inset-0 m-auto h-[34rem] w-[34rem] rounded-full border border-ink/[0.04]" />
+      {/* faint ring guides matching the orbit radii */}
+      <div className="pointer-events-none absolute left-[58%] top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2">
+        {ORBIT_RINGS.map((r) => (
+          <div
+            key={r.radius}
+            className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink/[0.05]"
+            style={{ width: r.radius * 2, height: r.radius * 2 }}
+          />
+        ))}
       </div>
 
-      {/* phone, center-left, cycling app screens (own frame so only the
-          screen cross-fades; chrome matches PhoneFrame) */}
-      <div className="absolute left-[4%] top-1/2 w-[46%] -translate-y-1/2">
+      {/* orbit rings — anchored at a zero-size centre point right of the phone */}
+      <div className="absolute left-[58%] top-1/2">
+        {ORBIT_RINGS.map((ring, ri) => (
+          <motion.div
+            key={ri}
+            className="absolute left-0 top-0"
+            animate={reduce ? undefined : { rotate: 360 }}
+            transition={{
+              duration: ring.duration,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {ORBIT_TILES.filter((t) => t.ring === ri).map((t) => (
+              <div
+                key={t.title}
+                className="absolute left-0 top-0"
+                style={{
+                  transform: `rotate(${t.angle}deg) translateY(-${ring.radius}px) rotate(${-t.angle}deg)`,
+                }}
+              >
+                <motion.div
+                  animate={reduce ? undefined : { rotate: -360 }}
+                  transition={{
+                    duration: ring.duration,
+                    ease: "linear",
+                    repeat: Infinity,
+                  }}
+                  style={{
+                    width: t.size,
+                    height: t.size,
+                    marginLeft: -t.size / 2,
+                    marginTop: -t.size / 2,
+                  }}
+                >
+                  <div className="flex h-full w-full items-center justify-center rounded-[22%] bg-white shadow-[var(--shadow-card)]">
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 24 24"
+                      className="h-[52%] w-[52%]"
+                      fill={`#${t.hex}`}
+                    >
+                      <path d={t.path} />
+                    </svg>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* phone, center-left, above the rings; cycling app screens */}
+      <div className="absolute left-[4%] top-1/2 z-10 w-[46%] -translate-y-1/2">
         <div className="relative aspect-[9/19.5] w-full rounded-[14%/6.5%] bg-ink p-[3.5%] shadow-2xl ring-1 ring-black/30">
           <div className="relative h-full w-full overflow-hidden rounded-[11%/5.2%] bg-white">
             <AnimatePresence mode="wait">
               <motion.div
                 key={app.slug}
-                initial={reduce ? false : { opacity: 0, scale: 1.03 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? undefined : { opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                initial={reduce ? false : { opacity: 0, scale: 1.04, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, scale: 0.99, y: -8 }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0"
               >
                 <Image
@@ -62,7 +123,7 @@ export function HeroOrbit({ reduce }: { reduce: boolean }) {
                   fill
                   sizes="(min-width:1024px) 240px, 0px"
                   className="object-cover object-top"
-                  priority
+                  priority={active === 0}
                 />
               </motion.div>
             </AnimatePresence>
@@ -72,15 +133,15 @@ export function HeroOrbit({ reduce }: { reduce: boolean }) {
         </div>
       </div>
 
-      {/* caption card synced to the phone screen */}
-      <div className="absolute bottom-[6%] left-[1%] w-[46%]">
+      {/* caption card synced to the phone screen, above everything */}
+      <div className="absolute bottom-[6%] left-[1%] z-20 w-[46%]">
         <AnimatePresence mode="wait">
           <motion.div
             key={app.slug}
-            initial={reduce ? false : { opacity: 0, y: 10 }}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -10 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            exit={reduce ? undefined : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="inline-block rounded-2xl border border-ink/10 bg-white/90 px-4 py-3 shadow-[var(--shadow-card)] backdrop-blur"
           >
             <p className="font-display text-sm font-bold text-ink">{app.name}</p>
@@ -88,38 +149,6 @@ export function HeroOrbit({ reduce }: { reduce: boolean }) {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* levitating tech tiles — outer div positions, Float bobs, tile draws */}
-      {ORBIT_TILES.map((t) => (
-        <div
-          key={t.title}
-          className="absolute"
-          style={{
-            top: `${t.top}%`,
-            left: `${t.left}%`,
-            width: t.size,
-            height: t.size,
-          }}
-        >
-          <Float
-            amplitude={t.amplitude}
-            duration={t.duration}
-            delay={t.delay}
-            className="h-full w-full"
-          >
-            <div className="flex h-full w-full items-center justify-center rounded-[22%] bg-white shadow-[var(--shadow-card)]">
-              <svg
-                role="img"
-                viewBox="0 0 24 24"
-                className="h-[52%] w-[52%]"
-                fill={`#${t.hex}`}
-              >
-                <path d={t.path} />
-              </svg>
-            </div>
-          </Float>
-        </div>
-      ))}
     </motion.div>
   );
 }

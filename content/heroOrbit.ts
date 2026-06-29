@@ -27,51 +27,56 @@ export const ORBIT_APPS: OrbitApp[] = [
   { slug: "ssm-holding", screen: "screen-01.webp", name: "SSM Holding", tag: "React Native · PostgreSQL" },
 ];
 
-/** One levitating tech tile. top/left are % of the orbit container;
- *  size is px; amplitude/duration/delay drive the Float bob. */
+/** Concentric orbit rings (like Bevel's). Each ring slowly rotates; tiles on
+ *  it counter-rotate to stay upright. The outer ring turns slower for depth. */
+export interface OrbitRing {
+  radius: number; // px from the orbit centre
+  duration: number; // seconds per full revolution
+}
+
+export const ORBIT_RINGS: OrbitRing[] = [
+  { radius: 122, duration: 58 },
+  { radius: 198, duration: 86 },
+];
+
+/** One tech tile riding an orbit ring. `ring` indexes ORBIT_RINGS; `angle` is
+ *  its starting position on that ring (degrees, 0 = top, clockwise). */
 export interface OrbitTile {
   title: string;
   hex: string;
   path: string;
-  top: number;
-  left: number;
+  ring: number;
+  angle: number;
   size: number;
-  amplitude: number;
-  duration: number;
-  delay: number;
 }
 
 type Icon = { title: string; hex: string; path: string };
 
 const tile = (
   icon: Icon,
-  top: number,
-  left: number,
+  ring: number,
+  angle: number,
   size: number,
-  amplitude: number,
-  duration: number,
-  delay: number,
 ): OrbitTile => ({
   title: icon.title,
   hex: icon.hex,
   path: icon.path,
-  top,
-  left,
+  ring,
+  angle,
   size,
-  amplitude,
-  duration,
-  delay,
 });
 
-/** 8 tiles in a loose arc sweeping top-center → right → bottom-center
- *  around the phone (which sits in the left ~46% of the container). */
+/** 8 tiles spread across two rings. Angles are offset between rings so the
+ *  tiles stay evenly distributed as the rings turn. */
 export const ORBIT_TILES: OrbitTile[] = [
-  tile(siTypescript, 4, 38, 50, 10, 8, 0.3),
-  tile(siNextdotjs, 6, 58, 58, 9, 7.5, 0),
-  tile(siReact, 20, 82, 64, 12, 8.5, 0.6),
-  tile(siAngular, 32, 62, 46, 8, 7, 1.1),
-  tile(siFigma, 44, 92, 56, 8, 7, 1.2),
-  tile(siKotlin, 52, 68, 48, 7, 6.5, 0.4),
-  tile(siFlutter, 66, 84, 60, 11, 9, 0.9),
-  tile(siNodedotjs, 84, 64, 54, 9, 7.5, 1.5),
+  // inner ring
+  tile(siReact, 0, 8, 60),
+  tile(siFigma, 0, 98, 52),
+  tile(siKotlin, 0, 188, 48),
+  tile(siAngular, 0, 278, 50),
+  // outer ring
+  tile(siNextdotjs, 1, 46, 56),
+  tile(siTypescript, 1, 132, 52),
+  tile(siFlutter, 1, 216, 58),
+  tile(siNodedotjs, 1, 318, 54),
 ];
