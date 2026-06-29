@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { LogoMark } from "@/components/Logo";
-import { Float } from "@/components/motion/Float";
-import { PhoneFrame } from "@/components/devices/PhoneFrame";
-import { BrowserFrame } from "@/components/devices/BrowserFrame";
+import { HeroOrbit } from "@/components/devices/HeroOrbit";
 import { site } from "@/content/site";
 
 export function Hero() {
@@ -97,53 +95,12 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <HeroVisual reduce={!!reduce} />
+        <HeroOrbit reduce={!!reduce} />
       </div>
     </section>
   );
 }
 
-/** Floating product cluster — a web dashboard with a phone overlapping it. */
-function HeroVisual({ reduce }: { reduce: boolean }) {
-  return (
-    <motion.div
-      aria-hidden
-      initial={reduce ? false : { opacity: 0, scale: 0.95, y: 24 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      className="relative hidden lg:block"
-    >
-      <div className="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle_at_60%_45%,rgba(1,194,187,0.16),transparent_62%)]" />
-
-      {/* Web dashboard */}
-      <Float amplitude={8} duration={9} className="ml-auto w-[94%]">
-        <BrowserFrame
-          src="/images/work/safefield/web-01.webp"
-          alt=""
-          w={1500}
-          h={744}
-          sizes="(min-width:1024px) 560px, 0px"
-          priority
-        />
-      </Float>
-
-      {/* Phone overlapping the lower-left */}
-      <Float
-        amplitude={11}
-        duration={8}
-        delay={0.6}
-        className="absolute -bottom-10 -left-3 w-[32%]"
-      >
-        <PhoneFrame
-          src="/images/work/bluvi/screen-home.webp"
-          alt=""
-          sizes="(min-width:1024px) 190px, 0px"
-          priority
-        />
-      </Float>
-    </motion.div>
-  );
-}
 
 function Underline({ disabled }: { disabled: boolean }) {
   return (
