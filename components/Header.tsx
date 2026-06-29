@@ -15,12 +15,16 @@ export function Header() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    const raf = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // Close mobile menu on route change.
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: collapse menu when navigation occurs
   useEffect(() => setOpen(false), [pathname]);
 
   // Lock scroll while menu open.

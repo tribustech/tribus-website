@@ -24,11 +24,7 @@ export function AnimatedCounter({
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setDisplay(value);
-      return;
-    }
+    if (!inView || reduce) return;
     const controls = animate(0, value, {
       duration,
       ease: [0.16, 1, 0.3, 1],
@@ -39,7 +35,7 @@ export function AnimatedCounter({
 
   return (
     <span ref={ref} className={className}>
-      {display}
+      {reduce ? value : display}
       {suffix}
     </span>
   );
