@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { GroupPhotos } from "@/components/sections/GroupPhotos";
+import { TeamGrid } from "@/components/sections/TeamGrid";
 import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CTA } from "@/components/sections/CTA";
 import { site } from "@/content/site";
@@ -49,6 +50,15 @@ export default function AboutPage() {
       </div>
 
       <Section>
+        <div className="mb-8 max-w-2xl">
+          <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-ink">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            Life at Tribus
+          </p>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl text-balance">
+            Paint nights, pair-programming, and the occasional sword fight.
+          </h2>
+        </div>
         <GroupPhotos />
       </Section>
 
@@ -65,6 +75,23 @@ export default function AboutPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      <Section className="py-12">
+        <div className="mb-10 max-w-2xl">
+          <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-ink">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            Meet the team
+          </p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
+            The people behind your success.
+          </h2>
+          <p className="mt-4 text-lg text-ink-soft text-balance">
+            A small, senior team — you work directly with the people who design,
+            build, and ship your product.
+          </p>
+        </div>
+        <TeamGrid />
       </Section>
 
       <ClientsStrip />

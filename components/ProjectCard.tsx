@@ -12,11 +12,11 @@ const MEDIA_LAYOUT: Partial<Record<MediaType, string>> = {
   mockup:
     "bottom-[-18%] w-[46%] rotate-[-5deg] group-hover:bottom-[-12%] group-hover:rotate-0",
   "mockup-wide":
-    "bottom-[-8%] w-[96%] rotate-[-1.5deg] group-hover:bottom-[-3%] group-hover:rotate-0",
+    "bottom-[-8%] w-[96%] group-hover:bottom-[-3%]",
   phone:
     "bottom-[-20%] w-[42%] rotate-[-5deg] group-hover:bottom-[-14%] group-hover:rotate-0",
   browser:
-    "bottom-[-16%] w-[90%] rotate-[-1.5deg] group-hover:bottom-[-10%] group-hover:rotate-0",
+    "bottom-[-16%] w-[90%] group-hover:bottom-[-10%]",
 };
 
 export function ProjectCard({ project }: { project: Project }) {

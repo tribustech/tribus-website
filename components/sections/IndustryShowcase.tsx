@@ -234,10 +234,11 @@ function IndustryCard({ project, index }: { project: Project; index: number }) {
         </motion.div>
       </motion.div>
 
-      {/* Media on a screenshot-matched gradient panel */}
+      {/* Media on a screenshot-matched gradient panel. On mobile it leads the
+          card (image on top); on desktop it sits in the right column. */}
       <motion.div
         variants={mediaV}
-        className="group relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-[var(--radius-xl2)] p-8"
+        className="group relative order-first flex min-h-[300px] items-center justify-center overflow-hidden rounded-[var(--radius-xl2)] p-8 lg:order-none"
         style={{
           backgroundImage: `linear-gradient(150deg, ${panel} 0%, ${panel}cc 55%, ${panel}99 100%)`,
         }}
@@ -311,10 +312,10 @@ function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
         </motion.div>
       </motion.div>
 
-      {/* Screenshot mosaic — a uniform wall of phone screens. */}
+      {/* Screenshot mosaic — a uniform wall of phone screens. Leads on mobile. */}
       <motion.div
         variants={mediaV}
-        className="relative flex min-h-[300px] items-center overflow-hidden rounded-[var(--radius-xl2)] bg-ink p-4"
+        className="relative order-first flex min-h-[300px] items-center overflow-hidden rounded-[var(--radius-xl2)] bg-ink p-4 lg:order-none"
       >
         <div className="grid w-full grid-cols-4 gap-2">
           {tiles.map((src, i) => (

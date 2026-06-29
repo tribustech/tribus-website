@@ -22,7 +22,7 @@ export default function WorkPage() {
           Our work
         </p>
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl md:text-6xl text-balance">
-          {projects.length} products, one obsession: the end user.
+          Products built with one obsession: the end user.
         </h1>
         <p className="mt-5 text-lg text-ink-soft text-balance">
           From civic-tech apps to B2B platforms and consumer products — filter
