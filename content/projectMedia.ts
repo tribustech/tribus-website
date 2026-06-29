@@ -13,10 +13,12 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/bluvi/screen-map.webp", w: 600, h: 1300, alt: "Bluvi — map of fishing spots" },
     { type: "phone", src: "/images/work/bluvi/screen-board.webp", w: 600, h: 1300, alt: "Bluvi — competition leaderboard" },
   ],
+  // Secom Professional: clean in-app screenshots.
   "secom-professional": [
-    { type: "mockup", src: "/images/work/secom-professional/01.webp", w: 900, h: 1679, alt: "Secom Professional — product detail" },
-    { type: "mockup", src: "/images/work/secom-professional/02.webp", w: 900, h: 1510, alt: "Secom Professional — catalogue" },
-    { type: "mockup", src: "/images/work/secom-professional/03.webp", w: 900, h: 1508, alt: "Secom Professional — account" },
+    { type: "phone", src: "/images/work/secom-professional/screen-home.webp", w: 600, h: 1300, alt: "Secom Professional — home & systems" },
+    { type: "phone", src: "/images/work/secom-professional/screen-catalog.webp", w: 600, h: 1300, alt: "Secom Professional — product catalogue" },
+    { type: "phone", src: "/images/work/secom-professional/screen-product.webp", w: 600, h: 1300, alt: "Secom Professional — product detail" },
+    { type: "phone", src: "/images/work/secom-professional/screen-fav.webp", w: 600, h: 1300, alt: "Secom Professional — favourites" },
   ],
   clubo: [
     { type: "mockup", src: "/images/work/clubo/01.webp", w: 900, h: 1596, alt: "Clubo — club home" },
@@ -73,9 +75,12 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/ssm-holding/screen-02.webp", w: 393, h: 852, alt: "SSM Holding — calendar" },
     { type: "phone", src: "/images/work/ssm-holding/screen-03.webp", w: 393, h: 852, alt: "SSM Holding — sign in" },
   ],
+  // VIC: clean in-app screenshots (volunteering platform).
   vic: [
-    { type: "mockup", src: "/images/work/vic/01.webp", w: 950, h: 1496, alt: "VIC — organisation profile" },
-    { type: "browser", src: "/images/work/vic/02.webp", w: 819, h: 544, alt: "VIC — dashboard" },
+    { type: "phone", src: "/images/work/vic/screen-home.webp", w: 600, h: 1300, alt: "VIC — volunteer home" },
+    { type: "phone", src: "/images/work/vic/screen-event.webp", w: 600, h: 1300, alt: "VIC — event detail" },
+    { type: "phone", src: "/images/work/vic/screen-events.webp", w: 600, h: 1300, alt: "VIC — open events" },
+    { type: "phone", src: "/images/work/vic/screen-org.webp", w: 600, h: 1300, alt: "VIC — organisation profile" },
   ],
   "silent-auction": [
     { type: "phone", src: "/images/work/silent-auction/01.webp", w: 560, h: 1213, alt: "Silent Auction — live bidding" },

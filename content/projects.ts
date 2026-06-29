@@ -37,12 +37,12 @@ export const projects: Project[] = [
   {
     slug: "secom-professional",
     name: "Secom Professional",
-    tagline: "A B2B ordering portal for health professionals.",
+    tagline: "A B2B catalogue & ordering app for health professionals.",
     description:
-      "A dedicated platform letting healthcare professionals browse, manage and order products with role-based access and a streamlined checkout flow.",
-    platforms: ["Web"],
+      "A dedicated mobile app letting healthcare professionals browse the catalogue by system and condition, save favourites, read product detail and order — with content tailored to their specialisation.",
+    platforms: ["Mobile"],
     industry: "Health & Wellness",
-    tech: ["Next.js", "NestJS", "PostgreSQL", "AWS"],
+    tech: ["React Native", "NestJS", "PostgreSQL", "AWS"],
     accent: "green",
     year: 2024,
     featured: true,
@@ -229,13 +229,13 @@ export const projects: Project[] = [
   {
     slug: "vic",
     name: "VIC",
-    tagline: "A smart digital companion.",
+    tagline: "Connecting NGOs with people who want to help.",
     description:
-      "An interactive product pairing an intuitive interface with a responsive backend, designed to guide users and surface the right information at the right moment.",
+      "A volunteering platform that links NGOs with volunteers — discover and join organisations, sign up for open events, and log volunteering hours. A community of 1,000+ active volunteers across 100+ organisations.",
     platforms: ["Web", "Mobile"],
-    industry: "Enterprise",
+    industry: "Civic Tech",
     tech: ["React", "React Native", "NestJS", "MongoDB"],
-    accent: "indigo",
+    accent: "amber",
     year: 2024,
     featured: true,
     // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.

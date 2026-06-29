@@ -75,6 +75,22 @@ body {
   animation: marquee var(--marquee-duration, 32s) linear infinite;
 }
 
+/* Industry showcase — sticky stacking cards.
+   Each card pins `--stack-top` below the viewport top; later cards have a
+   higher z-index, so they slide up and cover the previous one, leaving a
+   sliver peeking out. Desktop only — on small screens cards stack normally. */
+@media (min-width: 1024px) {
+  .industry-stack-card {
+    position: sticky;
+    top: var(--stack-top, 6rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .industry-stack-card {
+    position: static;
+  }
+}
+
 /* Accessibility: honor reduced motion globally */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

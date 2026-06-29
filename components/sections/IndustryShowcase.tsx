@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { animate, motion, useInView, useReducedMotion } from "motion/react";
 import type { Project } from "@/content/types";
@@ -70,10 +70,28 @@ function CountUp({
   );
 }
 
+/* Sticky-stack geometry: each card pins this far below the header, stepped so
+   the previous card keeps a sliver visible above the one covering it. */
+const STACK_BASE_REM = 6; // clears the sticky site header (~80px)
+const STACK_STEP_REM = 3.5; // visible sliver of each prior card
+
 /** One industry, as a full-width card. Image side alternates via `flip`. */
-function IndustryCard({ project, flip }: { project: Project; flip: boolean }) {
+function IndustryCard({
+  project,
+  flip,
+  index,
+}: {
+  project: Project;
+  flip: boolean;
+  index: number;
+}) {
   const media = getPrimaryMedia(project.slug);
   const hex = accentHex[project.accent];
+
+  const stackStyle = {
+    "--stack-top": `${STACK_BASE_REM + index * STACK_STEP_REM}rem`,
+    zIndex: index + 1,
+  } as CSSProperties;
 
   const facts = [
     { label: "Platforms", value: project.platforms.join(" · ") },
@@ -86,8 +104,9 @@ function IndustryCard({ project, flip }: { project: Project; flip: boolean }) {
       variants={cardV}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      className="grid items-stretch gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 bg-white p-6 shadow-[var(--shadow-card)] sm:p-8 lg:grid-cols-2 lg:gap-10"
+      viewport={{ once: true, amount: 0.2 }}
+      style={stackStyle}
+      className="industry-stack-card grid items-stretch gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 bg-white p-6 shadow-[var(--shadow-card-hover)] sm:p-8 lg:grid-cols-2 lg:gap-10"
     >
       {/* Copy */}
       <motion.div
@@ -238,15 +257,20 @@ export function IndustryShowcase({
           <span className="italic text-teal-ink">every industry</span>.
         </h2>
 
-        {/* Every industry, stacked one after another. */}
-        <div className="mt-10 space-y-8 sm:mt-12 sm:space-y-10">
-          {industries.map((ind, i) => {
-            const project = projectsByIndustry[ind];
-            if (!project) return null;
-            return (
-              <IndustryCard key={ind} project={project} flip={i % 2 === 1} />
-            );
-          })}
+        {/* Every industry, stacked one after another. On desktop the cards pin
+            and slide over each other; on mobile they stack normally. */}
+        <div className="mt-10 space-y-6 sm:mt-12">
+          {industries
+            .map((ind) => projectsByIndustry[ind])
+            .filter((p): p is Project => Boolean(p))
+            .map((project, i) => (
+              <IndustryCard
+                key={project.slug}
+                project={project}
+                flip={i % 2 === 1}
+                index={i}
+              />
+            ))}
         </div>
       </div>
     </section>
