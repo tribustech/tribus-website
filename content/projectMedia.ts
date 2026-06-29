@@ -65,8 +65,10 @@ export const projectMedia: Record<string, Media[]> = {
   "covasna-media": [
     { type: "browser", src: "/images/work/covasna-media/web-01.webp", w: 1440, h: 900, alt: "Covasna Media — news portal" },
   ],
+  // Recorder: website + mobile app (shown together as a responsive combo).
   recorder: [
-    { type: "shot", src: "/images/work/recorder/shot-01.webp", w: 720, h: 1558, alt: "Recorder — onest journalism" },
+    { type: "browser", src: "/images/work/recorder/web-01.webp", w: 1440, h: 774, alt: "Recorder — newsroom website" },
+    { type: "shot", src: "/images/work/recorder/shot-01.webp", w: 720, h: 1558, alt: "Recorder — mobile app" },
     { type: "shot", src: "/images/work/recorder/shot-02.webp", w: 720, h: 1558, alt: "Recorder — notification settings" },
   ],
   "armenia-refugee-support": [
@@ -77,6 +79,10 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/ssm-holding/screen-01.webp", w: 393, h: 1444, alt: "SSM Holding — dashboard" },
     { type: "phone", src: "/images/work/ssm-holding/screen-02.webp", w: 393, h: 852, alt: "SSM Holding — calendar" },
     { type: "phone", src: "/images/work/ssm-holding/screen-03.webp", w: 393, h: 852, alt: "SSM Holding — sign in" },
+  ],
+  "european-youth-foundation": [
+    { type: "browser", src: "/images/work/european-youth-foundation/web-02.webp", w: 1129, h: 728, alt: "European Youth Foundation — calls for proposals" },
+    { type: "browser", src: "/images/work/european-youth-foundation/web-01.webp", w: 715, h: 461, alt: "European Youth Foundation — platform home" },
   ],
   safefield: [
     { type: "browser", src: "/images/work/safefield/web-01.webp", w: 1500, h: 744, alt: "SafeField — compliance dashboard" },

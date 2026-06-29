@@ -14,9 +14,9 @@ import { getMedia } from "@/content/projectMedia";
 const ACCENTS = ["teal", "indigo", "coral", "amber", "blue", "green"];
 
 describe("projects", () => {
-  it("has 19 projects with unique slugs", () => {
-    expect(projects.length).toBe(19);
-    expect(new Set(projects.map((p) => p.slug)).size).toBe(19);
+  it("has 20 projects with unique slugs", () => {
+    expect(projects.length).toBe(20);
+    expect(new Set(projects.map((p) => p.slug)).size).toBe(20);
   });
 
   it("every project has non-empty required fields and a valid accent", () => {

@@ -281,8 +281,8 @@ export const projects: Project[] = [
     name: "Recorder",
     tagline: "Independent journalism, in your pocket.",
     description:
-      "The mobile app for Recorder — Romania's independent investigative newsroom. Readers follow documentaries, daily news and investigations, with fine-grained notification controls to keep up with the stories that matter.",
-    platforms: ["Mobile"],
+      "The website and mobile app for Recorder — Romania's independent investigative newsroom. Readers follow documentaries, daily news and investigations across web and mobile, with fine-grained notification controls to keep up with the stories that matter.",
+    platforms: ["Web", "Mobile"],
     industry: "Media & Publishing",
     tech: ["React Native", "NestJS", "PostgreSQL"],
     accent: "coral",
@@ -303,6 +303,19 @@ export const projects: Project[] = [
     year: 2025,
     featured: true,
     link: "https://apps.apple.com/ro/app/ssm-holding/id6757382676",
+  },
+  {
+    slug: "european-youth-foundation",
+    name: "European Youth Foundation",
+    tagline: "A grant management system for the Council of Europe.",
+    description:
+      "A grant-management platform for the Council of Europe's European Youth Foundation — youth NGOs discover calls for proposals, apply for grants and study sessions, and manage projects from application to reporting through a single dashboard.",
+    platforms: ["Web"],
+    industry: "Public Sector",
+    tech: ["Next.js", "NestJS", "PostgreSQL"],
+    accent: "blue",
+    year: 2026,
+    featured: true,
   },
   {
     slug: "safefield",

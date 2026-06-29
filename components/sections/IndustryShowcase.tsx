@@ -8,6 +8,7 @@ import { accentHex } from "@/lib/accents";
 import { getMedia } from "@/content/projectMedia";
 import { AutoCarousel } from "@/components/devices/AutoCarousel";
 import { Coverflow } from "@/components/devices/Coverflow";
+import { DeviceCombo } from "@/components/devices/DeviceCombo";
 
 /* Easing shared with the rest of the site. */
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -86,6 +87,12 @@ function IndustryCard({
 }) {
   const cardMedia = getMedia(project.slug);
   const primary = cardMedia[0];
+  const web = cardMedia.find(
+    (m) => m.type === "browser" || m.type === "mockup-wide",
+  );
+  const mobile = cardMedia.find(
+    (m) => m.type === "phone" || m.type === "shot" || m.type === "mockup",
+  );
   const hex = accentHex[project.accent];
 
   const stackStyle = {
@@ -218,20 +225,24 @@ function IndustryCard({
           className="absolute -bottom-16 left-1/2 h-40 w-3/4 -translate-x-1/2 rounded-full blur-3xl opacity-50"
           style={{ backgroundColor: hex }}
         />
-        {primary &&
-          (primary.type === "browser" || primary.type === "mockup-wide" ? (
-            <div className="relative w-full max-w-[460px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]">
-              <AutoCarousel
-                media={cardMedia}
-                sizes="(min-width:1024px) 460px, 80vw"
-              />
-            </div>
-          ) : (
-            <Coverflow
+        {web && mobile ? (
+          <div className="relative w-full max-w-[440px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]">
+            <DeviceCombo web={web} mobile={mobile} />
+          </div>
+        ) : primary &&
+          (primary.type === "browser" || primary.type === "mockup-wide") ? (
+          <div className="relative w-full max-w-[460px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]">
+            <AutoCarousel
               media={cardMedia}
-              className="h-[420px] w-full max-w-[460px]"
+              sizes="(min-width:1024px) 460px, 80vw"
             />
-          ))}
+          </div>
+        ) : primary ? (
+          <Coverflow
+            media={cardMedia}
+            className="h-[440px] w-full max-w-[480px]"
+          />
+        ) : null}
       </motion.div>
     </motion.article>
   );

@@ -13,7 +13,7 @@ import { ProjectMedia } from "./ProjectMedia";
  */
 export function Coverflow({
   media,
-  intervalMs = 3200,
+  intervalMs = 3800,
   className,
 }: {
   media: Media[];
@@ -60,16 +60,17 @@ export function Coverflow({
             type="button"
             aria-label={`Show screen ${i + 1}`}
             onClick={() => setActive(i)}
-            className="absolute w-[55%] max-w-[200px] cursor-pointer [transform-style:preserve-3d]"
+            className="absolute w-[52%] max-w-[192px] cursor-pointer [transform-style:preserve-3d]"
             initial={false}
             animate={{
-              x: `${d * 60}%`,
-              rotateY: -d * 38,
-              scale: d === 0 ? 1 : 0.82,
-              opacity: d === 0 ? 1 : 0.55,
+              x: `${d * 72}%`,
+              rotateY: -d * 30,
+              scale: d === 0 ? 1.02 : 0.78,
+              opacity: d === 0 ? 1 : 0.45,
+              filter: d === 0 ? "brightness(1)" : "brightness(0.9)",
               zIndex: 30 - abs * 10,
             }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             style={{ zIndex: 30 - abs * 10 }}
           >
             <ProjectMedia media={m} sizes="220px" />
