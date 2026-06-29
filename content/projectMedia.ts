@@ -102,6 +102,29 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/silent-auction/02.webp", w: 560, h: 1186, alt: "Silent Auction — auction item" },
     { type: "phone", src: "/images/work/silent-auction/03.webp", w: 560, h: 1009, alt: "Silent Auction — leaderboard" },
   ],
+  // PTSD Help: clean in-app screenshots (mental-health support app).
+  "ptsd-help": [
+    { type: "phone", src: "/images/work/ptsd-help/screen-home.webp", w: 430, h: 932, alt: "PTSD Help — home & feelings" },
+    { type: "phone", src: "/images/work/ptsd-help/screen-symptoms.webp", w: 430, h: 932, alt: "PTSD Help — manage symptoms" },
+    { type: "phone", src: "/images/work/ptsd-help/screen-distress.webp", w: 431, h: 932, alt: "PTSD Help — distress meter" },
+    { type: "phone", src: "/images/work/ptsd-help/screen-relax.webp", w: 430, h: 932, alt: "PTSD Help — muscle relaxation tool" },
+  ],
+  // Practice4Good: NGO internship & practice platform (a Commit Global product).
+  practice4good: [
+    { type: "browser", src: "/images/work/practice4good/web-01.webp", w: 1440, h: 900, alt: "Practice4Good — search practice programmes at NGOs" },
+  ],
+  // Centru Civic: civic services directory (a Commit Global product).
+  "centru-civic": [
+    { type: "browser", src: "/images/work/centru-civic/web-01.webp", w: 1440, h: 900, alt: "Centru Civic — find civil-society services by need" },
+  ],
+  // Rundezvous: running-gear & coffee e-commerce store.
+  rundezvous: [
+    { type: "browser", src: "/images/work/rundezvous/web-01.webp", w: 1440, h: 900, alt: "Rundezvous — running hub & coffee shop store" },
+  ],
+  // PescarMania: fishing-equipment e-commerce store.
+  pescarmania: [
+    { type: "browser", src: "/images/work/pescarmania/web-01.webp", w: 1440, h: 900, alt: "PescarMania — fishing-equipment online store" },
+  ],
 };
 
 export function getMedia(slug: string): Media[] {

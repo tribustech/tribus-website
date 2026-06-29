@@ -20,6 +20,12 @@ the flagged items and send links so I can upgrade the rest.
 | Covasna Media | Deck screenshot | ℹ️ live site is covasnamedia.ro (cookie-walled); deck shot kept |
 | VIC | Deck mockup + dashboard | ⏳ send link if public |
 | Silent Auction | Deck mobile-web screenshots | ⏳ send link if public |
+| PTSD Help | Provided app screenshots (4) | ✅ clean in-app screens |
+| Practice4Good | Live capture practice4good.ro | ✅ headless Chrome hero |
+| Centru Civic | Live capture centrucivic.ro | ✅ headless Chrome hero |
+| Rundezvous | Live capture rundezvous.ro | ✅ headless Chrome hero (work page only) |
+| PescarMania | Live capture pescarmania.ro | ✅ headless Chrome hero (work page only) |
+| Invest in Romania | invest-in-romania.previewhub.eu | 🔒 401 — PreviewHub auth gate; need credentials or screenshots |
 
 ## How to add/upgrade a project's imagery
 
