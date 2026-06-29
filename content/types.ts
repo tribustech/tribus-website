@@ -81,6 +81,8 @@ export interface WorkStep {
   title: string;
   description: string;
   accent: Accent;
+  /** Short deliverable tags shown as chips on the step card. */
+  chips?: string[];
 }
 
 export interface Stat {

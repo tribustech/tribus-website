@@ -8,6 +8,7 @@ export const workModel: WorkStep[] = [
     description:
       "We understand what your business needs are, create a visual representation of them and prepare a high-level strategy to begin with.",
     accent: "teal",
+    chips: ["Discovery", "Wireframes", "Strategy"],
   },
   {
     index: 2,
@@ -15,6 +16,7 @@ export const workModel: WorkStep[] = [
     description:
       "We start development on the agreed requirements and constantly gather feedback from you and your end-users, iterating as we go.",
     accent: "indigo",
+    chips: ["Agile sprints", "QA & testing", "Continuous feedback"],
   },
   {
     index: 3,
@@ -22,5 +24,6 @@ export const workModel: WorkStep[] = [
     description:
       "We know how important customer feedback is, so we deliver a production-ready solution to your customers as soon as possible. You can be the one making the difference.",
     accent: "amber",
+    chips: ["Launch", "Monitoring", "Iteration"],
   },
 ];
