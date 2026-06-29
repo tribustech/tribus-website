@@ -63,7 +63,9 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "browser", src: "/images/work/edu-sport/02.webp", w: 1200, h: 2042, alt: "Edu-Sport — programme detail" },
   ],
   "covasna-media": [
-    { type: "browser", src: "/images/work/covasna-media/web-01.webp", w: 1440, h: 900, alt: "Covasna Media — news portal" },
+    { type: "browser", src: "/images/work/covasna-media/web-01.webp", w: 1440, h: 900, alt: "Covasna Media — news portal home" },
+    { type: "browser", src: "/images/work/covasna-media/web-02.webp", w: 1440, h: 900, alt: "Covasna Media — latest stories" },
+    { type: "browser", src: "/images/work/covasna-media/web-03.webp", w: 1440, h: 900, alt: "Covasna Media — article grid" },
   ],
   // Recorder: website + mobile app (shown together as a responsive combo).
   recorder: [
@@ -73,6 +75,8 @@ export const projectMedia: Record<string, Media[]> = {
   ],
   "armenia-refugee-support": [
     { type: "browser", src: "/images/work/armenia-refugee-support/web-01.webp", w: 1440, h: 900, alt: "Refugee Support — service map landing" },
+    { type: "browser", src: "/images/work/armenia-refugee-support/web-02.webp", w: 1440, h: 900, alt: "Refugee Support — service categories" },
+    { type: "browser", src: "/images/work/armenia-refugee-support/web-03.webp", w: 1440, h: 900, alt: "Refugee Support — mapped services" },
     { type: "phone", src: "/images/work/armenia-refugee-support/phone-01.webp", w: 390, h: 844, alt: "Refugee Support — mobile" },
   ],
   "ssm-holding": [
@@ -112,22 +116,29 @@ export const projectMedia: Record<string, Media[]> = {
   // Practice4Good: NGO internship & practice platform (a Commit Global product).
   practice4good: [
     { type: "browser", src: "/images/work/practice4good/web-01.webp", w: 1440, h: 900, alt: "Practice4Good — search practice programmes at NGOs" },
+    { type: "browser", src: "/images/work/practice4good/web-02.webp", w: 1440, h: 900, alt: "Practice4Good — programmes & domains" },
   ],
   // Centru Civic: civic services directory (a Commit Global product).
   "centru-civic": [
     { type: "browser", src: "/images/work/centru-civic/web-01.webp", w: 1440, h: 900, alt: "Centru Civic — find civil-society services by need" },
+    { type: "browser", src: "/images/work/centru-civic/web-02.webp", w: 1440, h: 900, alt: "Centru Civic — services & domains" },
   ],
   // Rundezvous: running-gear & coffee e-commerce store.
   rundezvous: [
     { type: "browser", src: "/images/work/rundezvous/web-01.webp", w: 1440, h: 900, alt: "Rundezvous — running hub & coffee shop store" },
+    { type: "browser", src: "/images/work/rundezvous/web-02.webp", w: 1440, h: 900, alt: "Rundezvous — new products" },
+    { type: "browser", src: "/images/work/rundezvous/web-03.webp", w: 1440, h: 900, alt: "Rundezvous — made to move with ease" },
   ],
   // PescarMania: fishing-equipment e-commerce store.
   pescarmania: [
     { type: "browser", src: "/images/work/pescarmania/web-01.webp", w: 1440, h: 900, alt: "PescarMania — fishing-equipment online store" },
+    { type: "browser", src: "/images/work/pescarmania/web-02.webp", w: 1440, h: 900, alt: "PescarMania — best-selling products" },
+    { type: "browser", src: "/images/work/pescarmania/web-03.webp", w: 1440, h: 900, alt: "PescarMania — carp-fishing category" },
   ],
   // WWF: green public procurement campaign page (wwf.ro).
   wwf: [
     { type: "browser", src: "/images/work/wwf/web-01.webp", w: 1440, h: 900, alt: "WWF — green public procurement campaign page" },
+    { type: "browser", src: "/images/work/wwf/web-02.webp", w: 1440, h: 900, alt: "WWF — why green procurement matters" },
   ],
 };
 
