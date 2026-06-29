@@ -86,14 +86,11 @@ function CountUp({
   );
 }
 
-/* Sticky-stack geometry: each card pins this far below the header, stepped so
-   the previous card keeps a sliver visible above the one covering it. */
-const STACK_BASE_REM = 6; // clears the sticky site header (~80px)
-const STACK_STEP_REM = 3.5; // visible sliver of each prior card
-
+/* Sticky-stack geometry lives in CSS (per-breakpoint); here we just hand each
+   card its position in the pile so the offset + z-index can be derived. */
 function stackStyleFor(index: number): CSSProperties {
   return {
-    "--stack-top": `${STACK_BASE_REM + index * STACK_STEP_REM}rem`,
+    "--stack-index": index,
     zIndex: index + 1,
   } as CSSProperties;
 }

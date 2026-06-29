@@ -76,13 +76,17 @@ body {
 }
 
 /* Industry showcase — sticky stacking cards.
-   Each card pins `--stack-top` below the viewport top; later cards have a
-   higher z-index, so they slide up and cover the previous one, leaving a
-   sliver peeking out. Desktop only — on small screens cards stack normally. */
+   Each card pins below the viewport top; later cards have a higher z-index, so
+   they slide up and cover the previous one, leaving a sliver peeking out. The
+   per-card offset (`--stack-index`) scales down on mobile so the pile fits a
+   short phone viewport; desktop gets a larger, airier step. */
+.industry-stack-card {
+  position: sticky;
+  top: calc(4.25rem + var(--stack-index, 0) * 1.25rem);
+}
 @media (min-width: 1024px) {
   .industry-stack-card {
-    position: sticky;
-    top: var(--stack-top, 6rem);
+    top: calc(6rem + var(--stack-index, 0) * 3.5rem);
   }
 }
 @media (prefers-reduced-motion: reduce) {
