@@ -80,6 +80,9 @@ export const projectMedia: Record<string, Media[]> = {
   ],
   "ssm-holding": [
     { type: "phone", src: "/images/work/ssm-holding/screen-01.webp", w: 393, h: 1444, alt: "SSM Holding — dashboard" },
+    { type: "phone", src: "/images/work/ssm-holding/screen-04.webp", w: 393, h: 852, alt: "SSM Holding — periodic inspections by client" },
+    { type: "phone", src: "/images/work/ssm-holding/screen-05.webp", w: 393, h: 852, alt: "SSM Holding — checklist criterion with photo evidence" },
+    { type: "phone", src: "/images/work/ssm-holding/screen-06.webp", w: 393, h: 1435, alt: "SSM Holding — inspection report summary & signatures" },
     { type: "phone", src: "/images/work/ssm-holding/screen-02.webp", w: 393, h: 852, alt: "SSM Holding — calendar" },
     { type: "phone", src: "/images/work/ssm-holding/screen-03.webp", w: 393, h: 852, alt: "SSM Holding — sign in" },
   ],

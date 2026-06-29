@@ -17,6 +17,7 @@ const SHOWCASE_SLUGS = [
   "ssm-holding",
   "european-youth-foundation",
   "safefield",
+  "bluvi",
 ];
 
 export default function HomePage() {

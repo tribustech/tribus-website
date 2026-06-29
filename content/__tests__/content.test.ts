@@ -64,8 +64,8 @@ describe("projects", () => {
 });
 
 describe("services", () => {
-  it("has 6 service areas, each with a stack", () => {
-    expect(services.length).toBe(6);
+  it("has 10 service areas, each with a stack", () => {
+    expect(services.length).toBe(10);
     for (const s of services) {
       expect(s.title).toBeTruthy();
       expect(s.stack.length).toBeGreaterThan(0);
