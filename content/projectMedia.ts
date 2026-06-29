@@ -78,6 +78,12 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/ssm-holding/screen-02.webp", w: 393, h: 852, alt: "SSM Holding — calendar" },
     { type: "phone", src: "/images/work/ssm-holding/screen-03.webp", w: 393, h: 852, alt: "SSM Holding — sign in" },
   ],
+  safefield: [
+    { type: "browser", src: "/images/work/safefield/web-01.webp", w: 1500, h: 744, alt: "SafeField — compliance dashboard" },
+    { type: "browser", src: "/images/work/safefield/web-02.webp", w: 1500, h: 745, alt: "SafeField — company overview" },
+    { type: "browser", src: "/images/work/safefield/web-03.webp", w: 1500, h: 744, alt: "SafeField — add SSM passport" },
+    { type: "browser", src: "/images/work/safefield/web-04.webp", w: 1500, h: 746, alt: "SafeField — reference data" },
+  ],
   // VIC: clean in-app screenshots (volunteering platform).
   vic: [
     { type: "phone", src: "/images/work/vic/screen-home.webp", w: 600, h: 1300, alt: "VIC — volunteer home" },

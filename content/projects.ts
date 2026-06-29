@@ -305,6 +305,19 @@ export const projects: Project[] = [
     link: "https://apps.apple.com/ro/app/ssm-holding/id6757382676",
   },
   {
+    slug: "safefield",
+    name: "SafeField",
+    tagline: "Occupational-safety compliance, without the paperwork.",
+    description:
+      "A web platform for Net Team to manage SSM (occupational health & safety) — issue and track digital safety passports per employee, manage companies and reference data, and stay ahead of expiries with a compliance dashboard.",
+    platforms: ["Web"],
+    industry: "Enterprise",
+    tech: ["React", "NestJS", "PostgreSQL"],
+    accent: "blue",
+    year: 2026,
+    featured: true,
+  },
+  {
     slug: "armenia-refugee-support",
     name: "Armenia Refugee Support",
     tagline: "A service map for people who need it most.",

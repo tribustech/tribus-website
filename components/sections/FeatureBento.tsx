@@ -32,7 +32,7 @@ const TRIO: TrioCard[] = [
     title: "VoteMonitor",
     body: "Observe elections in real time and flag irregularities the moment they happen.",
     img: "/images/work/votemonitor/01.webp",
-    imgHover: "/images/work/votemonitor/02.webp",
+    imgHover: "/images/work/votemonitor/03.webp",
     glow: "rgba(219,84,97,0.34)",
   },
   {

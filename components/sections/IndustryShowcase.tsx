@@ -6,8 +6,8 @@ import { animate, motion, useInView, useReducedMotion } from "motion/react";
 import type { Project } from "@/content/types";
 import { accentHex } from "@/lib/accents";
 import { getMedia } from "@/content/projectMedia";
-import { cn } from "@/lib/utils";
 import { AutoCarousel } from "@/components/devices/AutoCarousel";
+import { Coverflow } from "@/components/devices/Coverflow";
 
 /* Easing shared with the rest of the site. */
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -218,21 +218,20 @@ function IndustryCard({
           className="absolute -bottom-16 left-1/2 h-40 w-3/4 -translate-x-1/2 rounded-full blur-3xl opacity-50"
           style={{ backgroundColor: hex }}
         />
-        {primary && (
-          <div
-            className={cn(
-              "relative w-full transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]",
-              primary.type === "browser" || primary.type === "mockup-wide"
-                ? "max-w-[460px]"
-                : "max-w-[230px]",
-            )}
-          >
-            <AutoCarousel
+        {primary &&
+          (primary.type === "browser" || primary.type === "mockup-wide" ? (
+            <div className="relative w-full max-w-[460px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]">
+              <AutoCarousel
+                media={cardMedia}
+                sizes="(min-width:1024px) 460px, 80vw"
+              />
+            </div>
+          ) : (
+            <Coverflow
               media={cardMedia}
-              sizes="(min-width:1024px) 460px, 80vw"
+              className="h-[420px] w-full max-w-[460px]"
             />
-          </div>
-        )}
+          ))}
       </motion.div>
     </motion.article>
   );
