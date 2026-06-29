@@ -1,27 +1,41 @@
 import { Marquee } from "@/components/motion/Marquee";
 
+// Row one: languages, frameworks, frontend, mobile, design & deploy.
 const ROW_ONE = [
   "React",
   "Next.js",
   "Angular",
+  "TypeScript",
   "React Native",
   "Flutter",
+  "Ionic",
+  "Kotlin",
+  "Java",
   "Node.js",
   "NestJS",
-  "TypeScript",
-  "Kotlin",
+  ".NET",
+  "Laravel",
+  "Figma",
+  "Vercel",
 ];
 
+// Row two: data stores, AI tooling and cloud / infrastructure.
 const ROW_TWO = [
   "PostgreSQL",
+  "MySQL",
   "MongoDB",
+  "Redis",
+  "Elasticsearch",
   "Supabase",
   "Firebase",
+  "pgvector",
+  "OpenAI",
+  "Claude",
+  "LangChain",
   "AWS",
+  "Azure",
   "Google Cloud",
-  "Figma",
-  "Ionic",
-  "Java",
+  "Docker",
 ];
 
 function Chip({ label }: { label: string }) {

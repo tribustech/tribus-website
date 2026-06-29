@@ -27,19 +27,21 @@ export function Marquee({
       )}
     >
       <div
-        className="flex min-w-full shrink-0 items-center gap-4 animate-marquee group-hover:[animation-play-state:paused]"
+        className="flex w-max shrink-0 items-center animate-marquee group-hover:[animation-play-state:paused]"
         style={
           {
             "--marquee-duration": `${durationSeconds}s`,
             animationDirection: reverse ? "reverse" : "normal",
           } as React.CSSProperties
         }
-        aria-hidden={false}
       >
-        {children}
-        <span className="flex items-center gap-4" aria-hidden>
+        {/* Two structurally identical copies. Each group carries its own
+            trailing gap (pr-4) so the seam spacing matches the inner gap and
+            translateX(-50%) loops seamlessly regardless of content width. */}
+        <div className="flex shrink-0 items-center gap-4 pr-4">{children}</div>
+        <div className="flex shrink-0 items-center gap-4 pr-4" aria-hidden>
           {children}
-        </span>
+        </div>
       </div>
     </div>
   );

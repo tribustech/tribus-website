@@ -291,7 +291,7 @@ function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
           variants={itemV}
           className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance"
         >
-          Two dozen products, one craft.
+          Many products, one craft.
         </motion.h3>
         <motion.p
           variants={itemV}
@@ -311,12 +311,12 @@ function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
         </motion.div>
       </motion.div>
 
-      {/* Screenshot mosaic */}
+      {/* Screenshot mosaic — a uniform wall of phone screens. */}
       <motion.div
         variants={mediaV}
-        className="relative min-h-[300px] overflow-hidden rounded-[var(--radius-xl2)] bg-ink p-4"
+        className="relative flex min-h-[300px] items-center overflow-hidden rounded-[var(--radius-xl2)] bg-ink p-4"
       >
-        <div className="grid h-full grid-cols-3 gap-2 sm:grid-cols-4">
+        <div className="grid w-full grid-cols-4 gap-2">
           {tiles.map((src, i) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -325,7 +325,7 @@ function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
               alt=""
               aria-hidden
               loading="lazy"
-              className="h-full w-full rounded-lg object-cover object-top ring-1 ring-white/10 transition-transform duration-500 hover:scale-[1.04]"
+              className="aspect-[3/5] w-full rounded-lg object-cover object-top ring-1 ring-white/10 transition-transform duration-500 hover:scale-[1.04]"
             />
           ))}
         </div>
@@ -337,22 +337,24 @@ function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
 }
 
 export function IndustryShowcase({ projects }: { projects: Project[] }) {
-  // Build the mosaic from a spread of real primaries (mobile + web).
+  // Build the mosaic from real phone screens only — one per product — so every
+  // tile shares the same tall ratio and the wall reads as a clean grid of apps.
+  // (Mixing wide browser shots in here cropped them to ugly slivers.)
   const tiles = [
     "bluvi",
-    "safefield",
     "vic",
-    "rundezvous",
-    "ssm-holding",
-    "european-youth-foundation",
     "secom-professional",
-    "pescarmania",
+    "clubo",
+    "ssm-holding",
     "ptsd-help",
-    "covasna-media",
-    "recorder",
-    "arhiv360",
+    "votemonitor",
+    "silent-auction",
   ]
-    .map((slug) => getMedia(slug)[0]?.src)
+    .map(
+      (slug) =>
+        getMedia(slug).find((m) => m.type === "phone" || m.type === "shot")
+          ?.src,
+    )
     .filter((s): s is string => Boolean(s));
 
   return (

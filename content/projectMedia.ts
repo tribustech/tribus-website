@@ -22,11 +22,10 @@ export const projectMedia: Record<string, Media[]> = {
   ],
   // Clubo: clean in-app screenshots (members club app).
   clubo: [
-    { type: "phone", src: "/images/work/clubo/screen-home.webp", w: 600, h: 1300, alt: "Clubo — member home & meetings" },
-    { type: "phone", src: "/images/work/clubo/screen-meeting.webp", w: 600, h: 1300, alt: "Clubo — meeting detail" },
-    { type: "phone", src: "/images/work/clubo/screen-meetings.webp", w: 600, h: 1300, alt: "Clubo — meetings" },
-    { type: "phone", src: "/images/work/clubo/screen-partners.webp", w: 600, h: 1300, alt: "Clubo — partner benefits" },
-    { type: "phone", src: "/images/work/clubo/screen-profile.webp", w: 600, h: 1300, alt: "Clubo — member profile" },
+    { type: "phone", src: "/images/work/clubo/screen-home.webp", w: 600, h: 1300, alt: "Super Brain — member home & meetings" },
+    { type: "phone", src: "/images/work/clubo/screen-meeting.webp", w: 600, h: 1300, alt: "Super Brain — meeting detail" },
+    { type: "phone", src: "/images/work/clubo/screen-partners.webp", w: 600, h: 1300, alt: "Super Brain — partner benefits" },
+    { type: "phone", src: "/images/work/clubo/screen-profile.webp", w: 600, h: 1300, alt: "Super Brain — member profile" },
   ],
   // VoteMonitor: real marketing screenshots from Google Play (Code for Romania).
   votemonitor: [

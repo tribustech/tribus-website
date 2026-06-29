@@ -33,7 +33,7 @@ export const clientsRowOne: Client[] = [
 ];
 
 export const clientsRowTwo: Client[] = [
-  { name: "Secom", logo: "/images/clients/secom.png", width: 300, height: 96 },
+  { name: "Secom", logo: "/images/clients/secom.png", width: 300, height: 96, scale: 1.3 },
   { name: "Qualitance", logo: "/images/clients/qualitance.png", width: 1029, height: 96 },
   { name: "GOPA PACE", logo: "/images/clients/gopa-pace.svg", width: 605, height: 96 },
   { name: "WWF", logo: "/images/clients/wwf.svg", width: 65, height: 96, scale: 1.7 },

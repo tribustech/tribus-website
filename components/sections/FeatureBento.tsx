@@ -20,12 +20,12 @@ type TrioCard = {
 // Clean in-app screens in consistent phone frames (bevel-style).
 const TRIO: TrioCard[] = [
   {
-    slug: "bluvi",
-    title: "Bluvi",
-    body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
-    img: "/images/work/bluvi/screen-home.webp",
-    imgHover: "/images/work/bluvi/screen-spot.webp",
-    glow: "rgba(1,194,187,0.36)",
+    slug: "clubo",
+    title: "Super Brain",
+    body: "RSVP to curated meetings and events, unlock exclusive partner benefits, and connect with fellow members.",
+    img: "/images/work/clubo/screen-home.webp",
+    imgHover: "/images/work/clubo/screen-meeting.webp",
+    glow: "rgba(49,96,220,0.34)",
   },
   {
     slug: "votemonitor",

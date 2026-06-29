@@ -21,6 +21,8 @@ export function CaseStudy({
   const hero = media[0];
   const heroPortrait =
     hero && (hero.type === "phone" || hero.type === "mockup" || hero.type === "shot");
+  /* Web-led projects get the big, left-bleeding walkthrough. */
+  const bleed = hero?.type === "browser";
 
   const blocks: ShowcaseBlock[] = [
     {
@@ -125,17 +127,30 @@ export function CaseStudy({
       </div>
 
       {/* Sticky device walkthrough */}
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-        <StickyDeviceShowcase
-          media={media}
-          blocks={blocks}
-          accentClass={accentText[project.accent]}
-        />
+      {bleed ? (
+        <div className="py-16 sm:py-24">
+          <StickyDeviceShowcase
+            media={media}
+            blocks={blocks}
+            accentClass={accentText[project.accent]}
+            bleed
+          />
+        </div>
+      ) : (
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+          <StickyDeviceShowcase
+            media={media}
+            blocks={blocks}
+            accentClass={accentText[project.accent]}
+          />
+        </div>
+      )}
 
-        {/* Next project */}
+      {/* Next project */}
+      <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 sm:pb-24">
         <Link
           href={`/work/${next.slug}`}
-          className="group mt-8 flex items-center justify-between gap-4 rounded-[var(--radius-xl2)] border border-ink/10 bg-white p-6 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-8"
+          className="group flex items-center justify-between gap-4 rounded-[var(--radius-xl2)] border border-ink/10 bg-white p-6 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-8"
         >
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-ink-soft/70">
