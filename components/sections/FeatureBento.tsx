@@ -6,14 +6,34 @@ import { cn } from "@/lib/utils";
 
 const LAVENDER = "bg-gradient-to-b from-[#f1f1fc] to-[#e6e7f6]";
 
-const TRIO = [
+type TrioCard = {
+  title: string;
+  body: string;
+  img: string;
+  w: number;
+  h: number;
+  kind: "shot" | "mockup";
+  glow: string;
+};
+
+const TRIO: TrioCard[] = [
   {
     title: "Bluvi",
     body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
-    img: "/images/work/bluvi/bevel.webp",
-    w: 624,
-    h: 1300,
-    width: "w-[66%] max-w-[250px]",
+    img: "/images/work/bluvi/shot-01.webp",
+    w: 720,
+    h: 1280,
+    kind: "shot",
+    glow: "rgba(118,120,237,0.32)",
+  },
+  {
+    title: "VoteMonitor",
+    body: "Observe elections in real time and flag irregularities the moment they happen.",
+    img: "/images/work/votemonitor/shot-01.webp",
+    w: 720,
+    h: 1440,
+    kind: "shot",
+    glow: "rgba(246,174,45,0.34)",
   },
   {
     title: "Secom Professional",
@@ -21,15 +41,8 @@ const TRIO = [
     img: "/images/work/secom-professional/bevel.webp",
     w: 625,
     h: 1300,
-    width: "w-[66%] max-w-[250px]",
-  },
-  {
-    title: "Clubo",
-    body: "Club and community management — members, schedules and bookings in one place.",
-    img: "/images/work/clubo/bevel.webp",
-    w: 624,
-    h: 1300,
-    width: "w-[66%] max-w-[250px]",
+    kind: "mockup",
+    glow: "rgba(143,201,58,0.32)",
   },
 ];
 
@@ -52,7 +65,15 @@ export function FeatureBento() {
                 LAVENDER,
               )}
             >
-              <div className="px-8 pt-9">
+              {/* colored bottom glow (shows around the phone, like the reference) */}
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4"
+                style={{
+                  background: `radial-gradient(85% 65% at 50% 105%, ${card.glow}, transparent 70%)`,
+                }}
+              />
+
+              <div className="relative px-8 pt-9">
                 <h3 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.7rem]">
                   {card.title}
                 </h3>
@@ -60,25 +81,41 @@ export function FeatureBento() {
                   {card.body}
                 </p>
               </div>
+
               <div className="relative mt-6 flex-1">
-                <Float
-                  amplitude={6}
-                  duration={7}
-                  delay={i * 0.4}
-                  className={cn(
-                    "absolute left-1/2 top-0 -translate-x-1/2",
-                    card.width,
-                  )}
-                >
-                  <Image
-                    src={card.img}
-                    alt={card.title}
-                    width={card.w}
-                    height={card.h}
-                    sizes="280px"
-                    className="h-auto w-full drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]"
-                  />
-                </Float>
+                {card.kind === "shot" ? (
+                  <Float
+                    amplitude={6}
+                    duration={7}
+                    delay={i * 0.4}
+                    className="absolute left-1/2 top-1 w-[66%] max-w-[230px] -translate-x-1/2"
+                  >
+                    <Image
+                      src={card.img}
+                      alt={card.title}
+                      width={card.w}
+                      height={card.h}
+                      sizes="280px"
+                      className="h-auto w-full rounded-t-[20px] shadow-[0_22px_45px_-12px_rgba(40,40,80,0.4)] ring-1 ring-black/5"
+                    />
+                  </Float>
+                ) : (
+                  <Float
+                    amplitude={6}
+                    duration={7}
+                    delay={i * 0.4}
+                    className="absolute left-1/2 top-0 w-[64%] max-w-[240px] -translate-x-1/2"
+                  >
+                    <Image
+                      src={card.img}
+                      alt={card.title}
+                      width={card.w}
+                      height={card.h}
+                      sizes="280px"
+                      className="h-auto w-full drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]"
+                    />
+                  </Float>
+                )}
               </div>
             </div>
           </Reveal>
