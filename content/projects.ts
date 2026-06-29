@@ -61,10 +61,10 @@ export const projects: Project[] = [
   },
   {
     slug: "clubo",
-    name: "Clubo",
+    name: "Super Brain",
     tagline: "A premium members club, in your pocket.",
     description:
-      "A members-club app — discover and RSVP to curated meetings and events, browse exclusive partner benefits, and connect with fellow members through rich profiles.",
+      "A members-club app for Super Brain Clubs — discover and RSVP to curated meetings and events, browse exclusive partner benefits, and connect with fellow members through rich profiles.",
     platforms: ["Mobile"],
     industry: "Community",
     tech: ["React Native", "Node.js", "Firebase"],

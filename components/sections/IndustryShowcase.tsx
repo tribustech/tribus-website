@@ -4,7 +4,8 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { animate, motion, useInView, useReducedMotion } from "motion/react";
 import type { Project } from "@/content/types";
-import { accentHex } from "@/lib/accents";
+import { accentHex, accentSoft } from "@/lib/accents";
+import { cn } from "@/lib/utils";
 import { getMedia } from "@/content/projectMedia";
 import { AutoCarousel } from "@/components/devices/AutoCarousel";
 import { Coverflow } from "@/components/devices/Coverflow";
@@ -12,6 +13,20 @@ import { DeviceCombo } from "@/components/devices/DeviceCombo";
 
 /* Easing shared with the rest of the site. */
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+/* Per-project panel colour, sampled to harmonise with the screenshot on it
+   (Secom teal-green, Super Brain blue, VoteMonitor's yellow shots, Recorder
+   red, SSM indigo, EYF council-blue, SafeField blue). Falls back to the
+   project accent. */
+const panelColor: Record<string, string> = {
+  "secom-professional": "#1fb5a4",
+  clubo: "#3160dc",
+  votemonitor: "#f2ac24",
+  recorder: "#d8332c",
+  "ssm-holding": "#4a4dc2",
+  "european-youth-foundation": "#15589f",
+  safefield: "#2f7cc6",
+};
 
 /* The whole card fades up, then orchestrates its children. */
 const cardV = {
@@ -76,15 +91,27 @@ function CountUp({
 const STACK_BASE_REM = 6; // clears the sticky site header (~80px)
 const STACK_STEP_REM = 3.5; // visible sliver of each prior card
 
-/** One industry, as a full-width card. Copy stays left, media right, on every
-    card — a consistent layout reads cleanly in the stacked sliver pile. */
-function IndustryCard({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
+function stackStyleFor(index: number): CSSProperties {
+  return {
+    "--stack-top": `${STACK_BASE_REM + index * STACK_STEP_REM}rem`,
+    zIndex: index + 1,
+  } as CSSProperties;
+}
+
+/** Small labelled meta tag. */
+function MetaTag({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-semibold uppercase tracking-wider text-ink-soft/55">
+        {label}
+      </p>
+      <p className="mt-0.5 text-sm font-semibold text-ink">{value}</p>
+    </div>
+  );
+}
+
+/** One industry, as a full-width card. Copy stays left, media right. */
+function IndustryCard({ project, index }: { project: Project; index: number }) {
   const cardMedia = getMedia(project.slug);
   const primary = cardMedia[0];
   const web = cardMedia.find(
@@ -93,18 +120,8 @@ function IndustryCard({
   const mobile = cardMedia.find(
     (m) => m.type === "phone" || m.type === "shot" || m.type === "mockup",
   );
-  const hex = accentHex[project.accent];
-
-  const stackStyle = {
-    "--stack-top": `${STACK_BASE_REM + index * STACK_STEP_REM}rem`,
-    zIndex: index + 1,
-  } as CSSProperties;
-
-  const facts = [
-    { label: "Platforms", value: project.platforms.join(" · ") },
-    { label: "Stack", value: project.tech.slice(0, 3).join(" · ") },
-    { label: "Shipped", value: String(project.year) },
-  ];
+  const accent = accentHex[project.accent];
+  const panel = panelColor[project.slug] ?? accent;
 
   return (
     <motion.article
@@ -112,7 +129,7 @@ function IndustryCard({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      style={stackStyle}
+      style={stackStyleFor(index)}
       className="industry-stack-card grid items-stretch gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 bg-white p-6 shadow-[var(--shadow-card-hover)] sm:p-8 lg:grid-cols-2 lg:gap-10"
     >
       {/* Copy */}
@@ -120,7 +137,7 @@ function IndustryCard({
         <motion.p
           variants={itemV}
           className="mb-2 font-display text-lg font-medium italic"
-          style={{ color: hex }}
+          style={{ color: accent }}
         >
           {project.industry}
         </motion.p>
@@ -144,7 +161,7 @@ function IndustryCard({
               <div
                 key={m.label}
                 className="rounded-2xl p-4 ring-1 ring-ink/5"
-                style={{ backgroundColor: `${hex}12` }}
+                style={{ backgroundColor: `${accent}12` }}
               >
                 <dt className="sr-only">{m.label}</dt>
                 <dd>
@@ -165,7 +182,7 @@ function IndustryCard({
           <motion.figure
             variants={itemV}
             className="mt-6 border-l-2 pl-4"
-            style={{ borderColor: hex }}
+            style={{ borderColor: accent }}
           >
             <blockquote className="text-base italic text-ink/90 text-balance">
               “{project.testimonial.quote}”
@@ -173,7 +190,7 @@ function IndustryCard({
             <figcaption className="mt-2 flex items-center gap-2.5">
               <span
                 className="grid h-8 w-8 place-items-center rounded-full text-xs font-bold text-white"
-                style={{ backgroundColor: hex }}
+                style={{ backgroundColor: accent }}
                 aria-hidden
               >
                 {project.testimonial.author.slice(0, 1)}
@@ -188,17 +205,26 @@ function IndustryCard({
           </motion.figure>
         )}
 
-        {/* Quick facts + CTA */}
+        {/* Clean meta tags + CTA */}
         <motion.div
           variants={itemV}
-          className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-7 text-sm text-ink-soft"
+          className="mt-auto flex flex-wrap items-start gap-x-7 gap-y-4 pt-7"
         >
-          {facts.map((f) => (
-            <span key={f.label}>
-              <span className="font-semibold text-ink">{f.value}</span>
-              <span className="text-ink-soft/70"> · {f.label}</span>
-            </span>
-          ))}
+          <MetaTag label="Platforms" value={project.platforms.join(" · ")} />
+          <MetaTag label="Shipped" value={String(project.year)} />
+          <div className="flex flex-wrap gap-1.5 pt-0.5">
+            {project.tech.slice(0, 4).map((t) => (
+              <span
+                key={t}
+                className={cn(
+                  "rounded-full px-2.5 py-1 text-xs font-medium",
+                  accentSoft[project.accent],
+                )}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
         </motion.div>
         <motion.div variants={itemV}>
           <Link
@@ -211,19 +237,19 @@ function IndustryCard({
         </motion.div>
       </motion.div>
 
-      {/* Media on an accent gradient panel */}
+      {/* Media on a screenshot-matched gradient panel */}
       <motion.div
         variants={mediaV}
         className="group relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-[var(--radius-xl2)] p-8"
         style={{
-          backgroundImage: `linear-gradient(150deg, ${hex} 0%, ${hex}cc 55%, ${hex}99 100%)`,
+          backgroundImage: `linear-gradient(150deg, ${panel} 0%, ${panel}cc 55%, ${panel}99 100%)`,
         }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_80%_-10%,rgba(255,255,255,0.45),transparent_55%)]" />
         <div
           aria-hidden
           className="absolute -bottom-16 left-1/2 h-40 w-3/4 -translate-x-1/2 rounded-full blur-3xl opacity-50"
-          style={{ backgroundColor: hex }}
+          style={{ backgroundColor: panel }}
         />
         {web && mobile ? (
           <div className="relative w-full max-w-[440px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]">
@@ -238,23 +264,100 @@ function IndustryCard({
             />
           </div>
         ) : primary ? (
-          <Coverflow
-            media={cardMedia}
-            className="h-[440px] w-full max-w-[480px]"
-          />
+          <Coverflow media={cardMedia} className="h-[440px] w-full max-w-[480px]" />
         ) : null}
       </motion.div>
     </motion.article>
   );
 }
 
-export function IndustryShowcase({
-  industries,
-  projectsByIndustry,
-}: {
-  industries: string[];
-  projectsByIndustry: Record<string, Project>;
-}) {
+/** Closing card — a generic CTA into the full portfolio with a screenshot mosaic. */
+function ViewAllCard({ index, tiles }: { index: number; tiles: string[] }) {
+  return (
+    <motion.article
+      variants={cardV}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      style={stackStyleFor(index)}
+      className="industry-stack-card grid items-stretch gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 bg-white p-6 shadow-[var(--shadow-card-hover)] sm:p-8 lg:grid-cols-2 lg:gap-10"
+    >
+      {/* Copy */}
+      <motion.div variants={copyV} className="flex flex-col justify-center">
+        <motion.p
+          variants={itemV}
+          className="mb-2 font-display text-lg font-medium italic text-teal-ink"
+        >
+          And many more
+        </motion.p>
+        <motion.h3
+          variants={itemV}
+          className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance"
+        >
+          Two dozen products, one craft.
+        </motion.h3>
+        <motion.p
+          variants={itemV}
+          className="mt-3 max-w-md text-lg text-ink-soft text-balance"
+        >
+          From civic-tech apps to B2B platforms, consumer products and online
+          stores — explore everything we&apos;ve designed and shipped.
+        </motion.p>
+        <motion.div variants={itemV}>
+          <Link
+            href="/work"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper transition-all hover:-translate-y-0.5 hover:bg-teal-ink"
+          >
+            View all our work
+            <span aria-hidden>→</span>
+          </Link>
+        </motion.div>
+      </motion.div>
+
+      {/* Screenshot mosaic */}
+      <motion.div
+        variants={mediaV}
+        className="relative min-h-[300px] overflow-hidden rounded-[var(--radius-xl2)] bg-ink p-4"
+      >
+        <div className="grid h-full grid-cols-3 gap-2 sm:grid-cols-4">
+          {tiles.map((src, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={src + i}
+              src={src}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              className="h-full w-full rounded-lg object-cover object-top ring-1 ring-white/10 transition-transform duration-500 hover:scale-[1.04]"
+            />
+          ))}
+        </div>
+        {/* edge fade for depth */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_120%,rgba(0,0,0,0.55),transparent_60%)]" />
+      </motion.div>
+    </motion.article>
+  );
+}
+
+export function IndustryShowcase({ projects }: { projects: Project[] }) {
+  // Build the mosaic from a spread of real primaries (mobile + web).
+  const tiles = [
+    "bluvi",
+    "safefield",
+    "vic",
+    "rundezvous",
+    "ssm-holding",
+    "european-youth-foundation",
+    "secom-professional",
+    "pescarmania",
+    "ptsd-help",
+    "covasna-media",
+    "recorder",
+    "arhiv360",
+  ]
+    .map((slug) => getMedia(slug)[0]?.src)
+    .filter((s): s is string => Boolean(s));
+
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -267,15 +370,13 @@ export function IndustryShowcase({
           <span className="italic text-teal-ink">every industry</span>.
         </h2>
 
-        {/* Every industry, stacked one after another. On desktop the cards pin
-            and slide over each other; on mobile they stack normally. */}
+        {/* Curated highlights, then a generic "view all" card. On desktop the
+            cards pin and slide over each other; on mobile they stack normally. */}
         <div className="mt-10 space-y-6 sm:mt-12">
-          {industries
-            .map((ind) => projectsByIndustry[ind])
-            .filter((p): p is Project => Boolean(p))
-            .map((project, i) => (
-              <IndustryCard key={project.slug} project={project} index={i} />
-            ))}
+          {projects.map((project, i) => (
+            <IndustryCard key={project.slug} project={project} index={i} />
+          ))}
+          <ViewAllCard index={projects.length} tiles={tiles} />
         </div>
       </div>
     </section>
