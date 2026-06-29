@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Float } from "@/components/motion/Float";
@@ -7,6 +8,7 @@ import { cn } from "@/lib/utils";
 const LAVENDER = "bg-gradient-to-b from-[#f1f1fc] to-[#e6e7f6]";
 
 type TrioCard = {
+  slug: string;
   title: string;
   body: string;
   img: string;
@@ -18,31 +20,34 @@ type TrioCard = {
 
 const TRIO: TrioCard[] = [
   {
+    slug: "bluvi",
     title: "Bluvi",
     body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
     img: "/images/work/bluvi/shot-01.webp",
     w: 720,
     h: 1280,
     kind: "shot",
-    glow: "rgba(118,120,237,0.32)",
+    glow: "rgba(118,120,237,0.36)",
   },
   {
+    slug: "votemonitor",
     title: "VoteMonitor",
     body: "Observe elections in real time and flag irregularities the moment they happen.",
     img: "/images/work/votemonitor/shot-01.webp",
     w: 720,
     h: 1440,
     kind: "shot",
-    glow: "rgba(246,174,45,0.34)",
+    glow: "rgba(246,174,45,0.4)",
   },
   {
+    slug: "secom-professional",
     title: "Secom Professional",
     body: "A B2B ordering portal that makes restocking effortless for health professionals.",
     img: "/images/work/secom-professional/bevel.webp",
     w: 625,
     h: 1300,
     kind: "mockup",
-    glow: "rgba(143,201,58,0.32)",
+    glow: "rgba(143,201,58,0.36)",
   },
 ];
 
@@ -59,21 +64,22 @@ export function FeatureBento() {
       <div className="mt-14 grid gap-6 md:grid-cols-3">
         {TRIO.map((card, i) => (
           <Reveal key={card.title} delay={i * 0.08}>
-            <div
+            <Link
+              href={`/work/${card.slug}`}
               className={cn(
-                "relative flex min-h-[32rem] flex-col overflow-hidden rounded-[28px] sm:min-h-[38rem]",
+                "group relative flex h-[30rem] flex-col overflow-hidden rounded-[28px] shadow-[0_1px_2px_rgba(40,40,80,0.04)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-22px_rgba(40,40,80,0.35)] sm:h-[34rem]",
                 LAVENDER,
               )}
             >
-              {/* colored bottom glow (shows around the phone, like the reference) */}
+              {/* colored bottom glow (brightens on hover) */}
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 opacity-80 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
-                  background: `radial-gradient(85% 65% at 50% 105%, ${card.glow}, transparent 70%)`,
+                  background: `radial-gradient(85% 65% at 50% 108%, ${card.glow}, transparent 70%)`,
                 }}
               />
 
-              <div className="relative px-8 pt-9">
+              <div className="relative px-8 pt-8">
                 <h3 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.7rem]">
                   {card.title}
                 </h3>
@@ -82,42 +88,31 @@ export function FeatureBento() {
                 </p>
               </div>
 
-              <div className="relative mt-6 flex-1">
-                {card.kind === "shot" ? (
-                  <Float
-                    amplitude={6}
-                    duration={7}
-                    delay={i * 0.4}
-                    className="absolute left-1/2 top-1 w-[66%] max-w-[230px] -translate-x-1/2"
-                  >
-                    <Image
-                      src={card.img}
-                      alt={card.title}
-                      width={card.w}
-                      height={card.h}
-                      sizes="280px"
-                      className="h-auto w-full rounded-t-[20px] shadow-[0_22px_45px_-12px_rgba(40,40,80,0.4)] ring-1 ring-black/5"
-                    />
-                  </Float>
-                ) : (
-                  <Float
-                    amplitude={6}
-                    duration={7}
-                    delay={i * 0.4}
-                    className="absolute left-1/2 top-0 w-[64%] max-w-[240px] -translate-x-1/2"
-                  >
-                    <Image
-                      src={card.img}
-                      alt={card.title}
-                      width={card.w}
-                      height={card.h}
-                      sizes="280px"
-                      className="h-auto w-full drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]"
-                    />
-                  </Float>
-                )}
+              <div className="relative mt-4 flex-1">
+                <div
+                  className={cn(
+                    "absolute left-1/2 top-2 -translate-x-1/2 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:-translate-y-3 group-hover:scale-[1.04]",
+                    card.kind === "shot"
+                      ? "w-[72%] max-w-[250px]"
+                      : "w-[70%] max-w-[265px]",
+                  )}
+                >
+                  <Image
+                    src={card.img}
+                    alt={card.title}
+                    width={card.w}
+                    height={card.h}
+                    sizes="300px"
+                    className={cn(
+                      "h-auto w-full",
+                      card.kind === "shot"
+                        ? "rounded-t-[20px] shadow-[0_22px_45px_-12px_rgba(40,40,80,0.4)] ring-1 ring-black/5"
+                        : "drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]",
+                    )}
+                  />
+                </div>
               </div>
-            </div>
+            </Link>
           </Reveal>
         ))}
       </div>
