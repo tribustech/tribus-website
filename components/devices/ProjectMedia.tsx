@@ -47,6 +47,24 @@ export function ProjectMedia({
     );
   }
 
+  // Branded marketing screenshot — opaque, rounded, full-bleed.
+  if (media.type === "shot") {
+    return (
+      <Image
+        src={media.src}
+        alt={media.alt}
+        width={media.w}
+        height={media.h}
+        sizes={sizes ?? "(min-width: 1024px) 360px, 70vw"}
+        priority={priority}
+        className={cn(
+          "block h-auto w-full rounded-2xl shadow-[0_20px_45px_-15px_rgba(0,0,0,0.35)] ring-1 ring-black/5",
+          className,
+        )}
+      />
+    );
+  }
+
   // Pre-rendered transparent mockups — show as-is, floating.
   return (
     <Image

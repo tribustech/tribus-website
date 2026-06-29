@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { MediaType, Project } from "@/content/types";
 import { accentBg, accentSoft } from "@/lib/accents";
@@ -7,7 +8,7 @@ import { MagneticCard } from "@/components/motion/MagneticCard";
 import { ProjectMedia } from "@/components/devices/ProjectMedia";
 
 /** Per-media-type placement of the floating device inside the accent header. */
-const MEDIA_LAYOUT: Record<MediaType, string> = {
+const MEDIA_LAYOUT: Partial<Record<MediaType, string>> = {
   mockup:
     "bottom-[-18%] w-[46%] rotate-[-5deg] group-hover:bottom-[-12%] group-hover:rotate-0",
   "mockup-wide":
@@ -42,7 +43,16 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.year}
           </span>
 
-          {media ? (
+          {media?.type === "shot" ? (
+            // Branded screenshot fills the header edge-to-edge.
+            <Image
+              src={media.src}
+              alt={media.alt}
+              fill
+              sizes="(min-width: 1024px) 380px, 90vw"
+              className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            />
+          ) : media ? (
             <div
               className={cn(
                 "pointer-events-none absolute left-1/2 -translate-x-1/2 transition-all duration-500 ease-out will-change-transform",

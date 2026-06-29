@@ -11,15 +11,16 @@ export const projects: Project[] = [
   {
     slug: "bluvi",
     name: "Bluvi",
-    tagline: "A polished consumer product, end to end.",
+    tagline: "The digital community for anglers.",
     description:
-      "Web and mobile experience built around a clean, people-first interface. Tribus owned the product from discovery through production, iterating quickly on real user feedback.",
-    platforms: ["Web", "Mobile"],
+      "Bluvi — Aplicația Pescarilor — helps anglers organise their fishing trips: discover lakes with reviews, facilities and species, register for competitions with live rankings, and follow the latest news and tips. Tribus built it end to end, on iOS and Android.",
+    platforms: ["Mobile"],
     industry: "Consumer",
-    tech: ["React", "React Native", "NestJS", "PostgreSQL"],
+    tech: ["React Native", "NestJS", "PostgreSQL"],
     accent: "teal",
-    year: 2024,
+    year: 2025,
     featured: true,
+    link: "https://play.google.com/store/apps/details?id=com.tribustech.bluvi",
   },
   {
     slug: "secom-professional",

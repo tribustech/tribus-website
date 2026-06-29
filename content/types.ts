@@ -8,8 +8,14 @@ export type Accent = "teal" | "indigo" | "coral" | "amber" | "blue" | "green";
  * - `browser`: raw web screenshot → rendered inside our BrowserFrame
  * - `mockup`: pre-rendered transparent single-phone render → floated as-is
  * - `mockup-wide`: pre-rendered multi-device composite → floated as-is
+ * - `shot`: opaque branded marketing screenshot (e.g. App/Play store) → full-bleed
  */
-export type MediaType = "phone" | "browser" | "mockup" | "mockup-wide";
+export type MediaType =
+  | "phone"
+  | "browser"
+  | "mockup"
+  | "mockup-wide"
+  | "shot";
 
 export interface Media {
   type: MediaType;

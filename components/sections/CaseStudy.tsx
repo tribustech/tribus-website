@@ -1,19 +1,14 @@
 import Link from "next/link";
-import type { Media, MediaType, Project } from "@/content/types";
+import type { Project } from "@/content/types";
 import { accentBg, accentSoft, accentText } from "@/lib/accents";
 import { getMedia } from "@/content/projectMedia";
 import { cn } from "@/lib/utils";
 import { Float } from "@/components/motion/Float";
-import { Reveal } from "@/components/motion/Reveal";
+import {
+  StickyDeviceShowcase,
+  type ShowcaseBlock,
+} from "@/components/devices/StickyDeviceShowcase";
 import { ProjectMedia } from "@/components/devices/ProjectMedia";
-
-/** Max width of a showcase item by media type. */
-const SHOWCASE_MAX: Record<MediaType, string> = {
-  mockup: "max-w-[240px]",
-  phone: "max-w-[230px]",
-  "mockup-wide": "max-w-[560px]",
-  browser: "max-w-[600px]",
-};
 
 export function CaseStudy({
   project,
@@ -24,7 +19,33 @@ export function CaseStudy({
 }) {
   const media = getMedia(project.slug);
   const hero = media[0];
-  const gallery = media.slice(1);
+  const heroPortrait =
+    hero && (hero.type === "phone" || hero.type === "mockup" || hero.type === "shot");
+
+  const blocks: ShowcaseBlock[] = [
+    {
+      kicker: "Overview",
+      title: project.tagline,
+      body: project.description,
+    },
+    {
+      kicker: "Experience",
+      title: "Designed around the people using it",
+      body: `We shaped the ${project.platforms
+        .join(" & ")
+        .toLowerCase()} experience around real end-user needs, sweating the details that make it feel effortless.`,
+    },
+    {
+      kicker: "Built with",
+      title: project.tech.join(" · "),
+      body: "A stack chosen to fit the problem — reliable, maintainable and ready to scale.",
+    },
+    {
+      kicker: "Delivered",
+      title: "From discovery to production",
+      body: "Shipped with a dedicated team, iterating quickly on feedback to get a production-ready solution into users' hands.",
+    },
+  ];
 
   return (
     <article>
@@ -57,7 +78,9 @@ export function CaseStudy({
 
           {hero && (
             <div className="flex justify-center lg:justify-end">
-              <Float className={cn("w-full", SHOWCASE_MAX[hero.type])}>
+              <Float
+                className={cn("w-full", heroPortrait ? "max-w-[240px]" : "max-w-[560px]")}
+              >
                 <ProjectMedia
                   media={hero}
                   priority
@@ -69,108 +92,50 @@ export function CaseStudy({
         </div>
       </header>
 
-      <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_280px]">
-          {/* Narrative */}
-          <div className="space-y-10">
-            <Block label="Overview" accentClass={accentText[project.accent]}>
-              <p className="text-lg leading-relaxed text-ink-soft">
-                {project.description}
-              </p>
-            </Block>
-
-            <Block label="What we did" accentClass={accentText[project.accent]}>
-              <ul className="space-y-3 text-lg text-ink-soft">
-                <li className="flex gap-3">
-                  <Dot accent={project.accent} />
-                  Partnered from discovery through production, shaping the
-                  product around real end-user needs.
-                </li>
-                <li className="flex gap-3">
-                  <Dot accent={project.accent} />
-                  Designed and built the{" "}
-                  {project.platforms.join(" & ").toLowerCase()} experience with a
-                  dedicated team.
-                </li>
-                <li className="flex gap-3">
-                  <Dot accent={project.accent} />
-                  Iterated quickly on feedback to ship a production-ready,
-                  maintainable solution.
-                </li>
-              </ul>
-            </Block>
+      {/* Facts strip */}
+      <div className="border-b border-ink/8 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-4 px-5 py-6 sm:px-8">
+          <Fact label="Platforms" value={project.platforms.join(" · ")} />
+          <Fact label="Industry" value={project.industry} />
+          <Fact label="Year" value={String(project.year)} />
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className={cn(
+                  "rounded-full px-2.5 py-1 text-xs font-medium",
+                  accentSoft[project.accent],
+                )}
+              >
+                {t}
+              </span>
+            ))}
           </div>
-
-          {/* Meta sidebar */}
-          <aside className="lg:sticky lg:top-28 lg:self-start">
-            <div className="rounded-[var(--radius-xl2)] border border-ink/10 bg-white p-6 shadow-[var(--shadow-card)]">
-              <MetaRow label="Platforms">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.platforms.map((p) => (
-                    <span
-                      key={p}
-                      className="rounded-full bg-ink/5 px-2.5 py-1 text-xs font-medium text-ink-soft"
-                    >
-                      {p}
-                    </span>
-                  ))}
-                </div>
-              </MetaRow>
-              <MetaRow label="Industry">
-                <span
-                  className={cn(
-                    "rounded-full px-2.5 py-1 text-xs font-medium",
-                    accentSoft[project.accent],
-                  )}
-                >
-                  {project.industry}
-                </span>
-              </MetaRow>
-              <MetaRow label="Tech stack">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-ink/10 px-2.5 py-1 text-xs font-medium text-ink-soft"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </MetaRow>
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-teal-ink"
-                >
-                  Visit live
-                </a>
-              )}
-            </div>
-          </aside>
-        </div>
-
-        {/* Device gallery */}
-        {gallery.length > 0 && (
-          <section className="mt-16">
-            <h2
-              className={cn(
-                "mb-8 text-sm font-semibold uppercase tracking-wider",
-                accentText[project.accent],
-              )}
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="ml-auto inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-teal-ink"
             >
-              A look inside
-            </h2>
-            <Gallery items={gallery} />
-          </section>
-        )}
+              Visit live <span aria-hidden>↗</span>
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Sticky device walkthrough */}
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <StickyDeviceShowcase
+          media={media}
+          blocks={blocks}
+          accentClass={accentText[project.accent]}
+        />
 
         {/* Next project */}
         <Link
           href={`/work/${next.slug}`}
-          className="group mt-16 flex items-center justify-between gap-4 rounded-[var(--radius-xl2)] border border-ink/10 bg-white p-6 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-8"
+          className="group mt-8 flex items-center justify-between gap-4 rounded-[var(--radius-xl2)] border border-ink/10 bg-white p-6 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-8"
         >
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-ink-soft/70">
@@ -195,75 +160,13 @@ export function CaseStudy({
   );
 }
 
-function Gallery({ items }: { items: Media[] }) {
+function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-wrap items-start justify-center gap-6 sm:gap-8">
-      {items.map((m, i) => {
-        const isPortrait = m.type === "phone" || m.type === "mockup";
-        return (
-          <Reveal
-            key={m.src}
-            delay={i * 0.08}
-            className={cn(
-              "w-full",
-              isPortrait ? "max-w-[230px]" : "max-w-[640px]",
-            )}
-          >
-            <Float amplitude={6} duration={7} delay={i * 0.5}>
-              <ProjectMedia media={m} sizes="(min-width: 1024px) 600px, 90vw" />
-            </Float>
-          </Reveal>
-        );
-      })}
-    </div>
-  );
-}
-
-function Block({
-  label,
-  accentClass,
-  children,
-}: {
-  label: string;
-  accentClass: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section>
-      <h2
-        className={cn(
-          "mb-4 text-sm font-semibold uppercase tracking-wider",
-          accentClass,
-        )}
-      >
-        {label}
-      </h2>
-      {children}
-    </section>
-  );
-}
-
-function MetaRow({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="border-b border-ink/8 py-3 first:pt-0 last:border-0">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-ink-soft/60">
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft/60">
         {label}
       </p>
-      {children}
+      <p className="mt-0.5 font-medium text-ink">{value}</p>
     </div>
-  );
-}
-
-function Dot({ accent }: { accent: Project["accent"] }) {
-  return (
-    <span
-      className={cn("mt-2 h-1.5 w-1.5 shrink-0 rounded-full", accentBg[accent])}
-    />
   );
 }

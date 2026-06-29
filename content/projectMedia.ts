@@ -6,10 +6,12 @@ import type { Media } from "./types";
  * Add more entries (or new slugs) as projects gain assets.
  */
 export const projectMedia: Record<string, Media[]> = {
+  // Bluvi: real marketing screenshots from Google Play (com.tribustech.bluvi).
   bluvi: [
-    { type: "mockup", src: "/images/work/bluvi/01.webp", w: 900, h: 1643, alt: "Bluvi app — discover screen" },
-    { type: "mockup", src: "/images/work/bluvi/02.webp", w: 900, h: 1643, alt: "Bluvi app — place detail" },
-    { type: "mockup", src: "/images/work/bluvi/03.webp", w: 900, h: 1643, alt: "Bluvi app — map view" },
+    { type: "shot", src: "/images/work/bluvi/shot-01.webp", w: 720, h: 1280, alt: "Bluvi — community home" },
+    { type: "shot", src: "/images/work/bluvi/shot-02.webp", w: 720, h: 1280, alt: "Bluvi — one app for anglers" },
+    { type: "shot", src: "/images/work/bluvi/shot-03.webp", w: 720, h: 1280, alt: "Bluvi — your favourite spots" },
+    { type: "shot", src: "/images/work/bluvi/shot-04.webp", w: 720, h: 1280, alt: "Bluvi — competitions" },
   ],
   "secom-professional": [
     { type: "mockup", src: "/images/work/secom-professional/01.webp", w: 900, h: 1679, alt: "Secom Professional — product detail" },
@@ -21,10 +23,12 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "mockup", src: "/images/work/clubo/02.webp", w: 900, h: 1596, alt: "Clubo — schedule" },
     { type: "mockup", src: "/images/work/clubo/03.webp", w: 900, h: 1596, alt: "Clubo — members" },
   ],
+  // VoteMonitor: real marketing screenshots from Google Play (Code for Romania).
   votemonitor: [
-    { type: "phone", src: "/images/work/votemonitor/01.webp", w: 387, h: 845, alt: "VoteMonitor — polling station observation" },
-    { type: "phone", src: "/images/work/votemonitor/02.webp", w: 372, h: 814, alt: "VoteMonitor — observation form" },
-    { type: "phone", src: "/images/work/votemonitor/03.webp", w: 402, h: 865, alt: "VoteMonitor — questions" },
+    { type: "shot", src: "/images/work/votemonitor/shot-01.webp", w: 720, h: 1440, alt: "VoteMonitor — monitor polling stations" },
+    { type: "shot", src: "/images/work/votemonitor/shot-02.webp", w: 720, h: 1440, alt: "VoteMonitor — form overview" },
+    { type: "shot", src: "/images/work/votemonitor/shot-03.webp", w: 720, h: 1440, alt: "VoteMonitor — answer questions" },
+    { type: "shot", src: "/images/work/votemonitor/shot-04.webp", w: 720, h: 1440, alt: "VoteMonitor — observation" },
   ],
   arhiv360: [
     { type: "browser", src: "/images/work/arhiv360/01.webp", w: 1500, h: 938, alt: "Arhiv360 — client management" },

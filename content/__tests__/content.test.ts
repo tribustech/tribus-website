@@ -42,7 +42,7 @@ describe("projects", () => {
   });
 
   it("every project has at least one valid media item", () => {
-    const types = ["phone", "browser", "mockup", "mockup-wide"];
+    const types = ["phone", "browser", "mockup", "mockup-wide", "shot"];
     for (const p of projects) {
       const media = getMedia(p.slug);
       expect(media.length, p.slug).toBeGreaterThan(0);
