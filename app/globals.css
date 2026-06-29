@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* ===== Tribus brand system ===== */
+@theme {
+  /* Brand palette (from 2025 deck theme) */
+  --color-teal: #01c2bb;
+  --color-teal-ink: #018f8a;
+  --color-indigo: #7678ed;
+  --color-coral: #db5461;
+  --color-amber: #f6ae2d;
+  --color-blue: #1c77c3;
+  --color-green: #8fc93a;
+
+  --color-ink: #3b3a3a;
+  --color-ink-soft: #5c5b5b;
+  --color-paper: #f3f3f3;
+  --color-paper-deep: #e9e9ea;
+  --color-white: #ffffff;
+
+  /* Semantic */
+  --color-background: #f3f3f3;
+  --color-foreground: #3b3a3a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-xl2: 1.75rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-card: 0 1px 2px rgba(59, 58, 58, 0.04),
+    0 12px 32px -12px rgba(59, 58, 58, 0.18);
+  --shadow-card-hover: 0 1px 2px rgba(59, 58, 58, 0.06),
+    0 28px 60px -20px rgba(59, 58, 58, 0.28);
+}
+
+/* Smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-teal);
+  color: #fff;
+}
+
+.font-display {
+  letter-spacing: -0.02em;
+}
+
+/* Hero mesh background */
+.bg-mesh {
+  background:
+    radial-gradient(40% 50% at 15% 20%, rgba(1, 194, 187, 0.18), transparent 60%),
+    radial-gradient(35% 45% at 85% 10%, rgba(118, 120, 237, 0.18), transparent 60%),
+    radial-gradient(45% 55% at 75% 80%, rgba(246, 174, 45, 0.14), transparent 60%),
+    radial-gradient(40% 50% at 10% 90%, rgba(219, 84, 97, 0.12), transparent 60%);
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 32s) linear infinite;
+}
+
+/* Accessibility: honor reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
