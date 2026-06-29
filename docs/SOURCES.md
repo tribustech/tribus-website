@@ -26,6 +26,7 @@ the flagged items and send links so I can upgrade the rest.
 | Rundezvous | Live capture rundezvous.ro | ✅ headless Chrome hero (work page only) |
 | PescarMania | Live capture pescarmania.ro | ✅ headless Chrome hero (work page only) |
 | Invest in Romania | invest-in-romania.previewhub.eu | 🔒 401 — PreviewHub auth gate; need credentials or screenshots |
+| WWF | Live capture wwf.ro green-procurement page | ✅ headless Chrome hero (work page only); logo whitened for clients strip |
 
 ## How to add/upgrade a project's imagery
 

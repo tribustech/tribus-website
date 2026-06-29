@@ -1,4 +1,4 @@
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Marquee } from "@/components/motion/Marquee";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@/content/clients";
 
 const LOGO_HEIGHT = 32; // rendered px; PNG assets are 96px tall for retina crispness
+const PANEL = "#101218";
 
 function LogoRow({ items }: { items: Client[] }) {
   return (
@@ -36,15 +37,36 @@ function LogoRow({ items }: { items: Client[] }) {
 
 export function ClientsStrip() {
   return (
-    <Section className="py-16">
-      <SectionHeading
-        align="center"
-        kicker={clientsKicker}
-        title="Trusted by ambitious teams."
-        description="From global enterprises to mission-driven NGOs — the teams behind these products partnered with Tribus to ship."
-      />
+    <section className="py-16 sm:py-20">
+      <div className="mx-auto mb-12 max-w-7xl px-5 sm:px-8">
+        <SectionHeading
+          align="center"
+          kicker={clientsKicker}
+          title="Trusted by ambitious teams."
+          description="From global enterprises to mission-driven NGOs — the teams behind these products partnered with Tribus to ship."
+        />
+      </div>
+
       <Reveal direction="none">
-        <div className="mt-12 overflow-hidden rounded-3xl bg-[#101218] py-12 ring-1 ring-white/10">
+        {/* Full-bleed dark band */}
+        <div
+          className="relative w-full overflow-hidden py-12"
+          style={{ backgroundColor: PANEL }}
+        >
+          {/* Soft edge fades — logos dissolve into the band at the screen edges */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 sm:w-48 lg:w-64"
+            style={{
+              background: `linear-gradient(to right, ${PANEL}, transparent)`,
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-48 lg:w-64"
+            style={{
+              background: `linear-gradient(to left, ${PANEL}, transparent)`,
+            }}
+          />
+
           <div className="flex flex-col gap-8">
             <Marquee durationSeconds={46}>
               <LogoRow items={clientsRowOne} />
@@ -55,6 +77,6 @@ export function ClientsStrip() {
           </div>
         </div>
       </Reveal>
-    </Section>
+    </section>
   );
 }

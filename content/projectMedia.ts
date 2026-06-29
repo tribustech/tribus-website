@@ -125,6 +125,10 @@ export const projectMedia: Record<string, Media[]> = {
   pescarmania: [
     { type: "browser", src: "/images/work/pescarmania/web-01.webp", w: 1440, h: 900, alt: "PescarMania — fishing-equipment online store" },
   ],
+  // WWF: green public procurement campaign page (wwf.ro).
+  wwf: [
+    { type: "browser", src: "/images/work/wwf/web-01.webp", w: 1440, h: 900, alt: "WWF — green public procurement campaign page" },
+  ],
 };
 
 export function getMedia(slug: string): Media[] {

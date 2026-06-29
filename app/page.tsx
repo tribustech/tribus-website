@@ -35,12 +35,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ClientsStrip />
       <StatBand />
       <FeatureBento />
       <IndustryShowcase industries={industries} projectsByIndustry={map} />
       <TechMarquee />
       <WorkModelFlow />
-      <ClientsStrip />
       <CTA />
     </>
   );

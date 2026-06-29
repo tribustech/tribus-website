@@ -32,6 +32,7 @@ export const clientsRowTwo: Client[] = [
   { name: "GOPA PACE", logo: "/images/clients/gopa-pace.svg", width: 605, height: 96 },
   { name: "Commit Global", logo: "/images/clients/commit-global.png", width: 335, height: 96 },
   { name: "Council of Europe", logo: "/images/clients/council-of-europe.png", width: 120, height: 96 },
+  { name: "WWF", logo: "/images/clients/wwf.png", width: 64, height: 96 },
   { name: "PlateLogiq", logo: "/images/clients/platelogiq.png", width: 678, height: 96 },
 ];
 

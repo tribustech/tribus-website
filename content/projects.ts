@@ -413,6 +413,20 @@ export const projects: Project[] = [
     featured: false,
     link: "https://pescarmania.ro/",
   },
+  {
+    slug: "wwf",
+    name: "WWF — Green Public Procurement",
+    tagline: "Local, quality food on public plates.",
+    description:
+      "A campaign page built for WWF Romania — promoting green public procurement to bring local, quality produce into Romania's public catering. We designed and built this page within the wwf.ro site.",
+    platforms: ["Web"],
+    industry: "Sustainability",
+    tech: ["WordPress", "PHP", "JavaScript"],
+    accent: "green",
+    year: 2025,
+    featured: false,
+    link: "https://wwf.ro/ce-facem/achiziii-publice-verzi-hrana/",
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
