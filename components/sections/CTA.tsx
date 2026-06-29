@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
-import { site } from "@/content/site";
 
 export function CTA() {
   return (
@@ -17,19 +16,13 @@ export function CTA() {
                 Tell us what you&apos;re building. We&apos;ll bring the team,
                 the craft and the momentum to ship it.
               </p>
-              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-9 flex justify-center">
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-full bg-teal px-8 py-4 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
                 >
                   Start a project
                 </Link>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center justify-center rounded-full border border-paper/20 px-8 py-4 text-base font-semibold text-paper transition-colors hover:border-paper/50"
-                >
-                  {site.email}
-                </a>
               </div>
             </div>
           </div>

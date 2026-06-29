@@ -27,19 +27,24 @@ export function LogoMark({ className }: { className?: string }) {
 
 export function Logo({
   className,
-  withWordmark = true,
+  tone = "ink",
 }: {
   className?: string;
-  withWordmark?: boolean;
+  tone?: "ink" | "white";
 }) {
+  const src =
+    tone === "white"
+      ? "/tribus-logo-full-white.svg"
+      : "/tribus-logo-full-ink.svg";
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className="h-7 w-7 text-ink" />
-      {withWordmark && (
-        <span className="font-display text-lg font-bold tracking-tight text-ink">
-          Tribus
-        </span>
-      )}
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt="Tribus Technologies"
+      width={1899}
+      height={734}
+      draggable={false}
+      className={cn("h-9 w-auto select-none", className)}
+    />
   );
 }

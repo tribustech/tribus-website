@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoMark } from "@/components/Logo";
+import { Logo } from "@/components/Logo";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -18,12 +18,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <LogoMark className="h-8 w-8 text-paper" />
-              <span className="font-display text-xl font-bold tracking-tight">
-                Tribus
-              </span>
-            </div>
+            <Logo tone="white" className="h-10" />
             <p className="mt-4 max-w-sm text-balance text-paper/70">
               {site.tagline} We build people-centric software and partner with
               you through your digital transformation.

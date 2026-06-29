@@ -132,6 +132,10 @@ export function StickyDeviceShowcase({
                 )}
               </motion.div>
             </AnimatePresence>
+
+            {/* Soft fade where the big screenshot runs off the left edge, so the
+                crop reads as intentional rather than broken. */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-[16vw] bg-gradient-to-r from-paper via-paper/70 to-transparent" />
           </div>
         </div>
 
