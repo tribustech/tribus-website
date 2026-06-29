@@ -48,16 +48,17 @@ export function ClientsStrip() {
       </div>
 
       <Reveal direction="none">
-        {/* Full-bleed white band — colored logos pop, hairline borders define the strip */}
-        <div className="relative w-full overflow-hidden border-y border-black/[0.06] bg-white py-10">
-          {/* Soft white edge fades on both sides */}
+        {/* Full-bleed marquee on the page background — the colored logos sit
+            directly on paper, no boxed-in white band. */}
+        <div className="relative w-full overflow-hidden py-4">
+          {/* Soft edge fades into the page background on both sides */}
           <div
             className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 sm:w-44"
-            style={{ background: "linear-gradient(to right, #fff, transparent)" }}
+            style={{ background: "linear-gradient(to right, var(--color-paper), transparent)" }}
           />
           <div
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 sm:w-44"
-            style={{ background: "linear-gradient(to left, #fff, transparent)" }}
+            style={{ background: "linear-gradient(to left, var(--color-paper), transparent)" }}
           />
 
           <div className="flex flex-col gap-9">

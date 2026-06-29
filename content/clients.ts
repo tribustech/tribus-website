@@ -24,7 +24,7 @@ export type Client = {
 
 export const clientsRowOne: Client[] = [
   { name: "Capgemini", logo: "/images/clients/capgemini.svg", width: 412, height: 96 },
-  { name: "Veruvis", logo: "/images/clients/veruvis.png", width: 165, height: 96, scale: 1.05 },
+  { name: "Veruvis", logo: "/images/clients/veruvis.png", width: 165, height: 96, scale: 1.6 },
   { name: "WERK24", logo: "/images/clients/werk24.png", width: 558, height: 96 },
   { name: "Council of Europe", logo: "/images/clients/council-of-europe.svg", width: 120, height: 96, scale: 1.5 },
   { name: "Recorder", logo: "/images/clients/recorder.svg", width: 420, height: 96 },
