@@ -25,6 +25,22 @@ export interface Media {
   alt: string;
 }
 
+/** A headline outcome shown in the industry showcase (animated count-up). */
+export interface Metric {
+  /** Numeric value used for the count-up animation. */
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+}
+
+/** A client quote shown alongside a project in the industry showcase. */
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
@@ -40,6 +56,10 @@ export interface Project {
   featured: boolean;
   /** Optional external/live link. */
   link?: string;
+  /** DRAFT outcome metrics for the industry showcase — review & refine. */
+  metrics?: Metric[];
+  /** DRAFT client testimonial for the industry showcase — review & refine. */
+  testimonial?: Testimonial;
 }
 
 export interface ServiceTechGroup {

@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Float } from "@/components/motion/Float";
+import { PhoneFrame } from "@/components/devices/PhoneFrame";
 import { cn } from "@/lib/utils";
 
 const LAVENDER = "bg-gradient-to-b from-[#f1f1fc] to-[#e6e7f6]";
@@ -12,42 +12,31 @@ type TrioCard = {
   title: string;
   body: string;
   img: string;
-  w: number;
-  h: number;
-  kind: "shot" | "mockup";
   glow: string;
 };
 
+// Clean in-app screens in consistent phone frames (bevel-style).
 const TRIO: TrioCard[] = [
   {
     slug: "bluvi",
     title: "Bluvi",
     body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
-    img: "/images/work/bluvi/shot-01.webp",
-    w: 720,
-    h: 1280,
-    kind: "shot",
-    glow: "rgba(118,120,237,0.36)",
+    img: "/images/work/bluvi/screen-home.webp",
+    glow: "rgba(1,194,187,0.36)",
   },
   {
     slug: "votemonitor",
     title: "VoteMonitor",
     body: "Observe elections in real time and flag irregularities the moment they happen.",
-    img: "/images/work/votemonitor/shot-01.webp",
-    w: 720,
-    h: 1440,
-    kind: "shot",
-    glow: "rgba(246,174,45,0.4)",
+    img: "/images/work/votemonitor/01.webp",
+    glow: "rgba(219,84,97,0.34)",
   },
   {
-    slug: "secom-professional",
-    title: "Secom Professional",
-    body: "A B2B ordering portal that makes restocking effortless for health professionals.",
-    img: "/images/work/secom-professional/bevel.webp",
-    w: 625,
-    h: 1300,
-    kind: "mockup",
-    glow: "rgba(143,201,58,0.36)",
+    slug: "ssm-holding",
+    title: "SSM Holding",
+    body: "Schedule tasks and events, manage projects and track your team — all in one place.",
+    img: "/images/work/ssm-holding/screen-01.webp",
+    glow: "rgba(118,120,237,0.36)",
   },
 ];
 
@@ -88,28 +77,9 @@ export function FeatureBento() {
                 </p>
               </div>
 
-              <div className="relative mt-4 flex-1">
-                <div
-                  className={cn(
-                    "absolute left-1/2 top-2 -translate-x-1/2 origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:-translate-y-3 group-hover:scale-[1.04]",
-                    card.kind === "shot"
-                      ? "w-[72%] max-w-[250px]"
-                      : "w-[70%] max-w-[265px]",
-                  )}
-                >
-                  <Image
-                    src={card.img}
-                    alt={card.title}
-                    width={card.w}
-                    height={card.h}
-                    sizes="300px"
-                    className={cn(
-                      "h-auto w-full",
-                      card.kind === "shot"
-                        ? "rounded-t-[20px] shadow-[0_22px_45px_-12px_rgba(40,40,80,0.4)] ring-1 ring-black/5"
-                        : "drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]",
-                    )}
-                  />
+              <div className="relative mt-5 flex-1">
+                <div className="absolute left-1/2 top-2 w-[64%] max-w-[228px] -translate-x-1/2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:-translate-y-3 group-hover:scale-[1.04]">
+                  <PhoneFrame src={card.img} alt={card.title} sizes="260px" />
                 </div>
               </div>
             </Link>

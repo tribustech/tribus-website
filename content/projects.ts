@@ -21,6 +21,18 @@ export const projects: Project[] = [
     year: 2025,
     featured: true,
     link: "https://play.google.com/store/apps/details?id=com.tribustech.bluvi",
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 30, suffix: "k+", label: "Anglers onboarded" },
+      { value: 4.7, suffix: "★", label: "Average store rating" },
+      { value: 60, suffix: "%", label: "Weekly active anglers" },
+    ],
+    testimonial: {
+      quote:
+        "Tribus shipped the whole platform — iOS, Android and backend — and made our community feel alive from day one.",
+      author: "Bluvi Team",
+      role: "Product, Bluvi",
+    },
   },
   {
     slug: "secom-professional",
@@ -34,6 +46,18 @@ export const projects: Project[] = [
     accent: "green",
     year: 2024,
     featured: true,
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 42, suffix: "%", label: "Faster reordering" },
+      { value: 3, suffix: "x", label: "More B2B accounts" },
+      { value: 99.9, suffix: "%", label: "Checkout uptime" },
+    ],
+    testimonial: {
+      quote:
+        "The new portal turned a manual ordering process into a self-serve flow our partners actually enjoy using.",
+      author: "Secom",
+      role: "Digital Team, Secom",
+    },
   },
   {
     slug: "clubo",
@@ -60,6 +84,18 @@ export const projects: Project[] = [
     accent: "coral",
     year: 2023,
     featured: true,
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 12, suffix: "k+", label: "Reports filed" },
+      { value: 850, suffix: "+", label: "Polling stations" },
+      { value: 100, suffix: "%", label: "Real-time sync" },
+    ],
+    testimonial: {
+      quote:
+        "Observers could report irregularities the moment they happened — transparency we couldn't achieve on paper.",
+      author: "VoteMonitor",
+      role: "Programme Lead",
+    },
   },
   {
     slug: "arhiv360",
@@ -86,6 +122,18 @@ export const projects: Project[] = [
     accent: "amber",
     year: 2023,
     featured: true,
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 2.5, suffix: "x", label: "Longer sessions" },
+      { value: 40, suffix: "%", label: "More songs queued" },
+      { value: 1, prefix: "<", suffix: "s", label: "Vote-to-play latency" },
+    ],
+    testimonial: {
+      quote:
+        "Juke turns a quiet room into a shared playlist in seconds — guests are hooked the moment they vote.",
+      author: "Juke",
+      role: "Founder",
+    },
   },
   {
     slug: "neuro-performance",
@@ -190,6 +238,18 @@ export const projects: Project[] = [
     accent: "indigo",
     year: 2024,
     featured: true,
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 35, suffix: "%", label: "Less time to answer" },
+      { value: 4, suffix: "x", label: "Faster onboarding" },
+      { value: 24, suffix: "/7", label: "Always-on assistant" },
+    ],
+    testimonial: {
+      quote:
+        "VIC surfaces the right information at exactly the right moment — it feels like a teammate, not a tool.",
+      author: "VIC",
+      role: "Operations Lead",
+    },
   },
   {
     slug: "silent-auction",
@@ -203,6 +263,60 @@ export const projects: Project[] = [
     accent: "coral",
     year: 2024,
     featured: true,
+    // DRAFT — placeholder metrics & quote for the industry showcase. Review & refine.
+    metrics: [
+      { value: 28, suffix: "%", label: "Higher final bids" },
+      { value: 3, suffix: "x", label: "More bids per item" },
+      { value: 100, suffix: "%", label: "Digital bidding" },
+    ],
+    testimonial: {
+      quote:
+        "Real-time bidding kept the whole room engaged — our fundraising night raised more than ever before.",
+      author: "Silent Auction",
+      role: "Events Organiser",
+    },
+  },
+  {
+    slug: "recorder",
+    name: "Recorder",
+    tagline: "Independent journalism, in your pocket.",
+    description:
+      "The mobile app for Recorder — Romania's independent investigative newsroom. Readers follow documentaries, daily news and investigations, with fine-grained notification controls to keep up with the stories that matter.",
+    platforms: ["Mobile"],
+    industry: "Media & Publishing",
+    tech: ["React Native", "NestJS", "PostgreSQL"],
+    accent: "coral",
+    year: 2024,
+    featured: true,
+    link: "https://apps.apple.com/ro/app/recorder-ro/id6736685252",
+  },
+  {
+    slug: "ssm-holding",
+    name: "SSM Holding",
+    tagline: "Tasks, calendar and teams in one place.",
+    description:
+      "A productivity app for SSM Holding's teams — schedule tasks and events, manage projects and clients, assign work and track completion across a shared calendar.",
+    platforms: ["Mobile"],
+    industry: "Productivity",
+    tech: ["React Native", "NestJS", "PostgreSQL"],
+    accent: "indigo",
+    year: 2025,
+    featured: true,
+    link: "https://apps.apple.com/ro/app/ssm-holding/id6757382676",
+  },
+  {
+    slug: "armenia-refugee-support",
+    name: "Armenia Refugee Support",
+    tagline: "A service map for people who need it most.",
+    description:
+      "A civic-tech platform helping refugees in Armenia find the services they need — legal aid, social support and more — through an accessible, searchable service map.",
+    platforms: ["Web"],
+    industry: "Civic Tech",
+    tech: ["Next.js", "NestJS", "PostgreSQL"],
+    accent: "blue",
+    year: 2024,
+    featured: false,
+    link: "https://armenia-service-map.vercel.app",
   },
 ];
 

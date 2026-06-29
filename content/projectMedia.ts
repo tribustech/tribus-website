@@ -6,12 +6,12 @@ import type { Media } from "./types";
  * Add more entries (or new slugs) as projects gain assets.
  */
 export const projectMedia: Record<string, Media[]> = {
-  // Bluvi: real marketing screenshots from Google Play (com.tribustech.bluvi).
+  // Bluvi: clean in-app screenshots (com.tribustech.bluvi).
   bluvi: [
-    { type: "shot", src: "/images/work/bluvi/shot-01.webp", w: 720, h: 1280, alt: "Bluvi — community home" },
-    { type: "shot", src: "/images/work/bluvi/shot-02.webp", w: 720, h: 1280, alt: "Bluvi — one app for anglers" },
-    { type: "shot", src: "/images/work/bluvi/shot-03.webp", w: 720, h: 1280, alt: "Bluvi — your favourite spots" },
-    { type: "shot", src: "/images/work/bluvi/shot-04.webp", w: 720, h: 1280, alt: "Bluvi — competitions" },
+    { type: "phone", src: "/images/work/bluvi/screen-home.webp", w: 600, h: 1300, alt: "Bluvi — home & live competitions" },
+    { type: "phone", src: "/images/work/bluvi/screen-spot.webp", w: 600, h: 1300, alt: "Bluvi — fishing spot detail" },
+    { type: "phone", src: "/images/work/bluvi/screen-map.webp", w: 600, h: 1300, alt: "Bluvi — map of fishing spots" },
+    { type: "phone", src: "/images/work/bluvi/screen-board.webp", w: 600, h: 1300, alt: "Bluvi — competition leaderboard" },
   ],
   "secom-professional": [
     { type: "mockup", src: "/images/work/secom-professional/01.webp", w: 900, h: 1679, alt: "Secom Professional — product detail" },
@@ -58,8 +58,20 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "browser", src: "/images/work/edu-sport/02.webp", w: 1200, h: 2042, alt: "Edu-Sport — programme detail" },
   ],
   "covasna-media": [
-    { type: "browser", src: "/images/work/covasna-media/01.webp", w: 1159, h: 780, alt: "Covasna Media — news portal" },
-    { type: "browser", src: "/images/work/covasna-media/02.webp", w: 1186, h: 727, alt: "Covasna Media — video portal" },
+    { type: "browser", src: "/images/work/covasna-media/web-01.webp", w: 1440, h: 900, alt: "Covasna Media — news portal" },
+  ],
+  recorder: [
+    { type: "shot", src: "/images/work/recorder/shot-01.webp", w: 720, h: 1558, alt: "Recorder — onest journalism" },
+    { type: "shot", src: "/images/work/recorder/shot-02.webp", w: 720, h: 1558, alt: "Recorder — notification settings" },
+  ],
+  "armenia-refugee-support": [
+    { type: "browser", src: "/images/work/armenia-refugee-support/web-01.webp", w: 1440, h: 900, alt: "Refugee Support — service map landing" },
+    { type: "phone", src: "/images/work/armenia-refugee-support/phone-01.webp", w: 390, h: 844, alt: "Refugee Support — mobile" },
+  ],
+  "ssm-holding": [
+    { type: "phone", src: "/images/work/ssm-holding/screen-01.webp", w: 393, h: 1444, alt: "SSM Holding — dashboard" },
+    { type: "phone", src: "/images/work/ssm-holding/screen-02.webp", w: 393, h: 852, alt: "SSM Holding — calendar" },
+    { type: "phone", src: "/images/work/ssm-holding/screen-03.webp", w: 393, h: 852, alt: "SSM Holding — sign in" },
   ],
   vic: [
     { type: "mockup", src: "/images/work/vic/01.webp", w: 950, h: 1496, alt: "VIC — organisation profile" },
