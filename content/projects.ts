@@ -62,12 +62,12 @@ export const projects: Project[] = [
   {
     slug: "clubo",
     name: "Clubo",
-    tagline: "Club & community management, simplified.",
+    tagline: "A premium members club, in your pocket.",
     description:
-      "Tools for organising members, schedules and bookings in one place — built to take the admin burden off community and club organisers.",
-    platforms: ["Web", "Mobile"],
-    industry: "Sports & Community",
-    tech: ["React", "React Native", "Node.js", "Firebase"],
+      "A members-club app — discover and RSVP to curated meetings and events, browse exclusive partner benefits, and connect with fellow members through rich profiles.",
+    platforms: ["Mobile"],
+    industry: "Community",
+    tech: ["React Native", "Node.js", "Firebase"],
     accent: "indigo",
     year: 2023,
     featured: false,

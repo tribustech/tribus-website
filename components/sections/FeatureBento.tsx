@@ -12,6 +12,8 @@ type TrioCard = {
   title: string;
   body: string;
   img: string;
+  /** Second screen — cross-fades in on hover. */
+  imgHover: string;
   glow: string;
 };
 
@@ -22,6 +24,7 @@ const TRIO: TrioCard[] = [
     title: "Bluvi",
     body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
     img: "/images/work/bluvi/screen-home.webp",
+    imgHover: "/images/work/bluvi/screen-spot.webp",
     glow: "rgba(1,194,187,0.36)",
   },
   {
@@ -29,6 +32,7 @@ const TRIO: TrioCard[] = [
     title: "VoteMonitor",
     body: "Observe elections in real time and flag irregularities the moment they happen.",
     img: "/images/work/votemonitor/01.webp",
+    imgHover: "/images/work/votemonitor/02.webp",
     glow: "rgba(219,84,97,0.34)",
   },
   {
@@ -36,6 +40,7 @@ const TRIO: TrioCard[] = [
     title: "SSM Holding",
     body: "Schedule tasks and events, manage projects and track your team — all in one place.",
     img: "/images/work/ssm-holding/screen-01.webp",
+    imgHover: "/images/work/ssm-holding/screen-02.webp",
     glow: "rgba(118,120,237,0.36)",
   },
 ];
@@ -79,7 +84,20 @@ export function FeatureBento() {
 
               <div className="relative mt-5 flex-1">
                 <div className="absolute left-1/2 top-2 w-[64%] max-w-[228px] -translate-x-1/2 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform group-hover:-translate-y-3 group-hover:scale-[1.04]">
-                  <PhoneFrame src={card.img} alt={card.title} sizes="260px" />
+                  <div className="relative">
+                    <PhoneFrame
+                      src={card.img}
+                      alt={card.title}
+                      sizes="260px"
+                      className="transition-opacity duration-500 group-hover:opacity-0"
+                    />
+                    <PhoneFrame
+                      src={card.imgHover}
+                      alt={`${card.title} — alternate screen`}
+                      sizes="260px"
+                      className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                  </div>
                 </div>
               </div>
             </Link>

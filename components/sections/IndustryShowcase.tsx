@@ -5,9 +5,9 @@ import Link from "next/link";
 import { animate, motion, useInView, useReducedMotion } from "motion/react";
 import type { Project } from "@/content/types";
 import { accentHex } from "@/lib/accents";
-import { getPrimaryMedia } from "@/content/projectMedia";
+import { getMedia } from "@/content/projectMedia";
 import { cn } from "@/lib/utils";
-import { ProjectMedia } from "@/components/devices/ProjectMedia";
+import { AutoCarousel } from "@/components/devices/AutoCarousel";
 
 /* Easing shared with the rest of the site. */
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -75,17 +75,17 @@ function CountUp({
 const STACK_BASE_REM = 6; // clears the sticky site header (~80px)
 const STACK_STEP_REM = 3.5; // visible sliver of each prior card
 
-/** One industry, as a full-width card. Image side alternates via `flip`. */
+/** One industry, as a full-width card. Copy stays left, media right, on every
+    card — a consistent layout reads cleanly in the stacked sliver pile. */
 function IndustryCard({
   project,
-  flip,
   index,
 }: {
   project: Project;
-  flip: boolean;
   index: number;
 }) {
-  const media = getPrimaryMedia(project.slug);
+  const cardMedia = getMedia(project.slug);
+  const primary = cardMedia[0];
   const hex = accentHex[project.accent];
 
   const stackStyle = {
@@ -109,10 +109,7 @@ function IndustryCard({
       className="industry-stack-card grid items-stretch gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 bg-white p-6 shadow-[var(--shadow-card-hover)] sm:p-8 lg:grid-cols-2 lg:gap-10"
     >
       {/* Copy */}
-      <motion.div
-        variants={copyV}
-        className={cn("flex flex-col", flip && "lg:order-last")}
-      >
+      <motion.div variants={copyV} className="flex flex-col">
         <motion.p
           variants={itemV}
           className="mb-2 font-display text-lg font-medium italic"
@@ -221,16 +218,19 @@ function IndustryCard({
           className="absolute -bottom-16 left-1/2 h-40 w-3/4 -translate-x-1/2 rounded-full blur-3xl opacity-50"
           style={{ backgroundColor: hex }}
         />
-        {media && (
+        {primary && (
           <div
             className={cn(
               "relative w-full transition-transform duration-500 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.02]",
-              media.type === "browser" || media.type === "mockup-wide"
+              primary.type === "browser" || primary.type === "mockup-wide"
                 ? "max-w-[460px]"
-                : "max-w-[220px]",
+                : "max-w-[230px]",
             )}
           >
-            <ProjectMedia media={media} sizes="(min-width:1024px) 460px, 80vw" />
+            <AutoCarousel
+              media={cardMedia}
+              sizes="(min-width:1024px) 460px, 80vw"
+            />
           </div>
         )}
       </motion.div>
@@ -264,12 +264,7 @@ export function IndustryShowcase({
             .map((ind) => projectsByIndustry[ind])
             .filter((p): p is Project => Boolean(p))
             .map((project, i) => (
-              <IndustryCard
-                key={project.slug}
-                project={project}
-                flip={i % 2 === 1}
-                index={i}
-              />
+              <IndustryCard key={project.slug} project={project} index={i} />
             ))}
         </div>
       </div>

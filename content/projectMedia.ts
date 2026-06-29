@@ -20,10 +20,13 @@ export const projectMedia: Record<string, Media[]> = {
     { type: "phone", src: "/images/work/secom-professional/screen-product.webp", w: 600, h: 1300, alt: "Secom Professional — product detail" },
     { type: "phone", src: "/images/work/secom-professional/screen-fav.webp", w: 600, h: 1300, alt: "Secom Professional — favourites" },
   ],
+  // Clubo: clean in-app screenshots (members club app).
   clubo: [
-    { type: "mockup", src: "/images/work/clubo/01.webp", w: 900, h: 1596, alt: "Clubo — club home" },
-    { type: "mockup", src: "/images/work/clubo/02.webp", w: 900, h: 1596, alt: "Clubo — schedule" },
-    { type: "mockup", src: "/images/work/clubo/03.webp", w: 900, h: 1596, alt: "Clubo — members" },
+    { type: "phone", src: "/images/work/clubo/screen-home.webp", w: 600, h: 1300, alt: "Clubo — member home & meetings" },
+    { type: "phone", src: "/images/work/clubo/screen-meeting.webp", w: 600, h: 1300, alt: "Clubo — meeting detail" },
+    { type: "phone", src: "/images/work/clubo/screen-meetings.webp", w: 600, h: 1300, alt: "Clubo — meetings" },
+    { type: "phone", src: "/images/work/clubo/screen-partners.webp", w: 600, h: 1300, alt: "Clubo — partner benefits" },
+    { type: "phone", src: "/images/work/clubo/screen-profile.webp", w: 600, h: 1300, alt: "Clubo — member profile" },
   ],
   // VoteMonitor: real marketing screenshots from Google Play (Code for Romania).
   votemonitor: [
