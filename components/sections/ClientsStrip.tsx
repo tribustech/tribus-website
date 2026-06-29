@@ -10,15 +10,18 @@ export function ClientsStrip() {
         kicker={clientsKicker}
         title="Trusted by teams who ship."
       />
-      <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-6">
-        {clients.map((client, i) => (
-          <Reveal key={client} delay={i * 0.05} direction="none">
-            <span className="font-display text-xl font-semibold text-ink/40 transition-colors hover:text-ink sm:text-2xl">
+      <Reveal direction="none">
+        <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-6">
+          {clients.map((client) => (
+            <span
+              key={client}
+              className="font-display text-xl font-semibold text-ink/55 transition-colors hover:text-ink sm:text-2xl"
+            >
               {client}
             </span>
-          </Reveal>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Reveal>
     </Section>
   );
 }

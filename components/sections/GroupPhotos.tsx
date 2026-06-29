@@ -6,11 +6,10 @@ import { cn } from "@/lib/utils";
  * the placeholder tiles below (keep the spans for the masonry rhythm).
  */
 const TILES = [
-  { span: "sm:col-span-2 sm:row-span-2", accent: "bg-teal/15", label: "The team" },
-  { span: "", accent: "bg-indigo/15", label: "Off-site" },
+  { span: "col-span-2 row-span-2", accent: "bg-teal/15", label: "The team" },
+  { span: "sm:col-span-2", accent: "bg-indigo/15", label: "Off-site" },
   { span: "", accent: "bg-amber/15", label: "Workshop" },
-  { span: "sm:col-span-2", accent: "bg-coral/15", label: "Shipping day" },
-  { span: "", accent: "bg-green/15", label: "Co-working" },
+  { span: "", accent: "bg-coral/15", label: "Shipping day" },
 ];
 
 export function GroupPhotos() {

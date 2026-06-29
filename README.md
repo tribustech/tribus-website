@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tribus Technologies — Website
 
-## Getting Started
+Modern marketing site for Tribus Technologies. Built with Next.js 15 (App Router),
+Tailwind CSS v4 and Framer Motion. The centerpiece is a live-filterable portfolio
+of real projects.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # production build
+npm start        # serve the production build
+npm run lint     # eslint
+npm test         # vitest (content + filter + contact validation)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+All site content lives in typed modules under [`content/`](content/) — no CMS needed:
 
-To learn more about Next.js, take a look at the following resources:
+| File | What it holds |
+|------|---------------|
+| `content/projects.ts` | Portfolio projects. Add a project = append one object. |
+| `content/services.ts` | The six service areas and their tech stacks. |
+| `content/workModel.ts` | The 3-step "Design → Build & Test → Go to market" flow. |
+| `content/clients.ts` | Client names shown in the trust strip. |
+| `content/site.ts` | Nav, contact details, hero stats. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> **Note:** Per-project descriptions are *draft* copy (the source deck stored them
+> as images). Review and refine the `description`/`tagline` fields in `projects.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Brand colors
 
-## Deploy on Vercel
+Defined once in [`app/globals.css`](app/globals.css) under `@theme`. Change them
+there and the whole site updates. The per-project accent is set by each project's
+`accent` field.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Images
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Project screenshots: `public/images/work/<slug>/` — then wire them into
+  `components/sections/CaseStudy.tsx` (currently branded placeholders).
+- Team / group photos: `public/images/team/` — referenced by
+  `components/sections/GroupPhotos.tsx`.
+
+## Contact form
+
+`POST /api/contact` validates input and emails via [Resend](https://resend.com)
+when configured. Copy `.env.example` to `.env.local` and set:
+
+```
+RESEND_API_KEY=...           # without this, the form returns a clear "not configured" message
+CONTACT_TO_EMAIL=...         # defaults to andrew.radulescu@wearetribus.com
+```
+
+## Deploy
+
+Optimised for [Vercel](https://vercel.com): push the repo, import the project,
+add the env vars above. Everything except `/api/contact` is statically generated.
+
+## Project docs
+
+- Design spec: `docs/superpowers/specs/2026-06-29-tribus-website-design.md`
+- Implementation plan: `docs/superpowers/plans/2026-06-29-tribus-website.md`
