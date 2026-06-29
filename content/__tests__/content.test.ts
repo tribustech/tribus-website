@@ -9,6 +9,7 @@ import {
 } from "@/content/projects";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
+import { getMedia } from "@/content/projectMedia";
 
 const ACCENTS = ["teal", "indigo", "coral", "amber", "blue", "green"];
 
@@ -38,6 +39,20 @@ describe("projects", () => {
 
   it("has at least 3 featured projects", () => {
     expect(featuredProjects().length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("every project has at least one valid media item", () => {
+    const types = ["phone", "browser", "mockup", "mockup-wide"];
+    for (const p of projects) {
+      const media = getMedia(p.slug);
+      expect(media.length, p.slug).toBeGreaterThan(0);
+      for (const m of media) {
+        expect(types, p.slug).toContain(m.type);
+        expect(m.src.endsWith(".webp"), p.slug).toBe(true);
+        expect(m.w, p.slug).toBeGreaterThan(0);
+        expect(m.h, p.slug).toBeGreaterThan(0);
+      }
+    }
   });
 
   it("derives non-empty filter facets", () => {

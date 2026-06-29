@@ -2,6 +2,23 @@ export type Platform = "Web" | "Mobile" | "Cross-platform";
 
 export type Accent = "teal" | "indigo" | "coral" | "amber" | "blue" | "green";
 
+/**
+ * How a piece of project media should be presented:
+ * - `phone`: raw mobile screenshot → rendered inside our PhoneFrame
+ * - `browser`: raw web screenshot → rendered inside our BrowserFrame
+ * - `mockup`: pre-rendered transparent single-phone render → floated as-is
+ * - `mockup-wide`: pre-rendered multi-device composite → floated as-is
+ */
+export type MediaType = "phone" | "browser" | "mockup" | "mockup-wide";
+
+export interface Media {
+  type: MediaType;
+  src: string;
+  w: number;
+  h: number;
+  alt: string;
+}
+
 export interface Project {
   slug: string;
   name: string;
