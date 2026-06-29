@@ -1,31 +1,39 @@
+import Image from "next/image";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Float } from "@/components/motion/Float";
-import { ProjectMedia } from "@/components/devices/ProjectMedia";
-import { getProject } from "@/content/projects";
-import { getPrimaryMedia } from "@/content/projectMedia";
-import type { Accent, Media } from "@/content/types";
-import { accentSoft, accentText } from "@/lib/accents";
 import { cn } from "@/lib/utils";
 
-const TINT: Record<Accent, string> = {
-  teal: "bg-teal/8",
-  indigo: "bg-indigo/8",
-  coral: "bg-coral/8",
-  amber: "bg-amber/12",
-  blue: "bg-blue/8",
-  green: "bg-green/12",
-};
+const LAVENDER = "bg-gradient-to-b from-[#f1f1fc] to-[#e6e7f6]";
 
-// Three featured mobile apps + one wide web product (bevel "Start the day…").
-const TRIO = ["bluvi", "clubo", "silent-auction"];
-const WIDE = "arhiv360";
+const TRIO = [
+  {
+    title: "Bluvi",
+    body: "Discover fishing spots, join competitions with live rankings, and follow the angler community.",
+    img: "/images/work/bluvi/bevel.webp",
+    w: 624,
+    h: 1300,
+    width: "w-[66%] max-w-[250px]",
+  },
+  {
+    title: "Secom Professional",
+    body: "A B2B ordering portal that makes restocking effortless for health professionals.",
+    img: "/images/work/secom-professional/bevel.webp",
+    w: 625,
+    h: 1300,
+    width: "w-[66%] max-w-[250px]",
+  },
+  {
+    title: "Clubo",
+    body: "Club and community management — members, schedules and bookings in one place.",
+    img: "/images/work/clubo/bevel.webp",
+    w: 624,
+    h: 1300,
+    width: "w-[66%] max-w-[250px]",
+  },
+];
 
 export function FeatureBento() {
-  const trio = TRIO.map((s) => getProject(s)).filter(Boolean);
-  const wide = getProject(WIDE);
-  const wideMedia = getPrimaryMedia(WIDE);
-
   return (
     <Section>
       <SectionHeading
@@ -36,113 +44,139 @@ export function FeatureBento() {
       />
 
       <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {trio.map((p, i) => {
-          if (!p) return null;
-          const media = getPrimaryMedia(p.slug);
-          return (
-            <Reveal key={p.slug} delay={i * 0.08}>
-              <FeatureCard
-                accent={p.accent}
-                title={p.name}
-                body={p.tagline}
-                media={media}
-              />
-            </Reveal>
-          );
-        })}
-      </div>
-
-      {/* Wide bento — web product */}
-      {wide && wideMedia && (
-        <Reveal delay={0.1}>
-          <div
-            className={cn(
-              "mt-6 grid items-center gap-8 overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 p-7 sm:p-10 lg:grid-cols-2",
-              TINT[wide.accent],
-            )}
-          >
-            <div>
-              <p
-                className={cn(
-                  "mb-3 text-sm font-semibold uppercase tracking-wider",
-                  accentText[wide.accent],
-                )}
-              >
-                {wide.industry}
-              </p>
-              <h3 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl text-balance">
-                {wide.name}
-              </h3>
-              <p className="mt-3 max-w-md text-lg text-ink-soft text-balance">
-                {wide.tagline} Built for clarity at scale.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {wide.tech.slice(0, 4).map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-ink-soft shadow-sm ring-1 ring-ink/5"
-                  >
-                    {t}
-                  </span>
-                ))}
+        {TRIO.map((card, i) => (
+          <Reveal key={card.title} delay={i * 0.08}>
+            <div
+              className={cn(
+                "relative flex min-h-[32rem] flex-col overflow-hidden rounded-[28px] sm:min-h-[38rem]",
+                LAVENDER,
+              )}
+            >
+              <div className="px-8 pt-9">
+                <h3 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.7rem]">
+                  {card.title}
+                </h3>
+                <p className="mt-3 max-w-[26ch] leading-relaxed text-ink-soft">
+                  {card.body}
+                </p>
+              </div>
+              <div className="relative mt-6 flex-1">
+                <Float
+                  amplitude={6}
+                  duration={7}
+                  delay={i * 0.4}
+                  className={cn(
+                    "absolute left-1/2 top-0 -translate-x-1/2",
+                    card.width,
+                  )}
+                >
+                  <Image
+                    src={card.img}
+                    alt={card.title}
+                    width={card.w}
+                    height={card.h}
+                    sizes="280px"
+                    className="h-auto w-full drop-shadow-[0_25px_45px_rgba(40,40,80,0.25)]"
+                  />
+                </Float>
               </div>
             </div>
-            <Float amplitude={8} duration={7}>
-              <ProjectMedia media={wideMedia} sizes="(min-width:1024px) 560px, 90vw" />
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Wide collage bento */}
+      <Reveal delay={0.1}>
+        <div
+          className={cn(
+            "mt-6 grid items-center gap-10 overflow-hidden rounded-[28px] p-8 sm:p-12 lg:grid-cols-2",
+            LAVENDER,
+          )}
+        >
+          <div>
+            <h2 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-ink sm:text-[2.6rem] text-balance">
+              Dashboards that
+              <br />
+              tame the chaos.
+            </h2>
+            <p className="mt-4 max-w-md text-lg text-ink-soft text-balance">
+              We turn tangled operations into clear, usable software — the kind
+              a whole team actually adopts.
+            </p>
+          </div>
+
+          <div className="relative h-[22rem] sm:h-[24rem]">
+            {/* Card A — what we ship */}
+            <Float
+              amplitude={7}
+              duration={8}
+              className="absolute left-0 top-2 z-10 w-[66%] max-w-[320px]"
+            >
+              <div className="rounded-2xl bg-white p-5 shadow-[0_20px_45px_-15px_rgba(40,40,80,0.3)] ring-1 ring-ink/5">
+                <p className="mb-4 text-sm font-semibold text-ink">What we ship</p>
+                <ShipRow color="bg-teal" label="Web apps" w="w-[90%]" />
+                <ShipRow color="bg-indigo" label="Mobile apps" w="w-[80%]" />
+                <ShipRow color="bg-amber" label="Cloud & infra" w="w-[65%]" />
+                <ShipRow color="bg-coral" label="UI / UX" w="w-[72%]" last />
+              </div>
+            </Float>
+
+            {/* Card B — the stack */}
+            <Float
+              amplitude={6}
+              duration={9}
+              delay={0.6}
+              className="absolute bottom-2 right-0 z-20 w-[60%] max-w-[290px]"
+            >
+              <div className="rounded-2xl bg-white p-5 shadow-[0_20px_45px_-15px_rgba(40,40,80,0.3)] ring-1 ring-ink/5">
+                <p className="mb-3 text-sm font-semibold text-ink">The stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Next.js", "React Native", "NestJS", "AWS", "Supabase"].map(
+                    (t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-paper px-2.5 py-1 text-xs font-medium text-ink-soft ring-1 ring-ink/5"
+                      >
+                        {t}
+                      </span>
+                    ),
+                  )}
+                </div>
+                <div className="mt-4 flex items-center gap-2 rounded-xl bg-green/10 px-3 py-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green text-[11px] text-white">
+                    ✓
+                  </span>
+                  <span className="text-sm font-medium text-ink">
+                    Shipped to production
+                  </span>
+                </div>
+              </div>
             </Float>
           </div>
-        </Reveal>
-      )}
+        </div>
+      </Reveal>
     </Section>
   );
 }
 
-function FeatureCard({
-  accent,
-  title,
-  body,
-  media,
+function ShipRow({
+  color,
+  label,
+  w,
+  last = false,
 }: {
-  accent: Accent;
-  title: string;
-  body: string;
-  media?: Media;
+  color: string;
+  label: string;
+  w: string;
+  last?: boolean;
 }) {
-  const isShot = media?.type === "shot";
   return (
-    <div
-      className={cn(
-        "flex h-full flex-col overflow-hidden rounded-[var(--radius-xl2)] border border-ink/8 p-7",
-        TINT[accent],
-      )}
-    >
-      <span
-        className={cn(
-          "w-fit rounded-full px-2.5 py-1 text-xs font-medium",
-          accentSoft[accent],
-        )}
-      >
-        Mobile
+    <div className={cn("flex items-center gap-3", !last && "mb-3")}>
+      <span className={cn("h-2.5 w-2.5 shrink-0 rounded-full", color)} />
+      <span className="w-28 shrink-0 text-sm text-ink-soft">{label}</span>
+      <span className="h-2 flex-1 rounded-full bg-paper-deep">
+        <span className={cn("block h-full rounded-full", color, w)} />
       </span>
-      <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink">
-        {title}
-      </h3>
-      <p className="mt-2 text-ink-soft">{body}</p>
-
-      <div className="relative mt-auto h-64 overflow-hidden pt-6">
-        {media && (
-          <div
-            className={cn(
-              "absolute bottom-0 left-1/2 -translate-x-1/2",
-              isShot ? "w-[172px]" : "w-[160px]",
-            )}
-          >
-            <Float amplitude={7} duration={6}>
-              <ProjectMedia media={media} sizes="200px" />
-            </Float>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
