@@ -102,6 +102,15 @@ export interface SiteConfig {
   phoneHref: string;
   location: string;
   url: string;
+  /** Year the company was founded — used for Organization structured data. */
+  founded: number;
+  /**
+   * Public social / external profile URLs, surfaced as schema.org `sameAs`.
+   * REVIEW: left empty intentionally — add real LinkedIn / Instagram / Facebook
+   * URLs so search engines and AI can verify the entity. Wrong URLs hurt SEO,
+   * so nothing is invented here.
+   */
+  social: string[];
   nav: { label: string; href: string }[];
   stats: Stat[];
 }

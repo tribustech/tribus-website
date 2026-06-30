@@ -14,6 +14,9 @@ export const site: SiteConfig = {
   phoneHref: "tel:+40725356633",
   location: "Bucharest, Romania",
   url: "https://wearetribus.com",
+  founded: 2021, // REVIEW: confirm actual founding year (used in Organization JSON-LD)
+  // REVIEW: add real profile URLs (LinkedIn, Instagram, Facebook…) — see SiteConfig.social
+  social: [],
   nav: [
     { label: "Work", href: "/work" },
     { label: "Services", href: "/services" },

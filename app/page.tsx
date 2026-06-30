@@ -5,8 +5,16 @@ import { WorkModelFlow } from "@/components/sections/WorkModelFlow";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CTA } from "@/components/sections/CTA";
+import { JsonLd } from "@/components/JsonLd";
+import { serviceCatalogSchema } from "@/lib/schema";
 import { getProject } from "@/content/projects";
+import type { Metadata } from "next";
 import type { Project } from "@/content/types";
+
+// Home inherits the root title/description/OG; it just needs its own canonical.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 /* Curated highlights for the industry showcase — the products worth featuring. */
 const SHOWCASE_SLUGS = [
@@ -26,6 +34,7 @@ export default function HomePage() {
   );
   return (
     <>
+      <JsonLd data={serviceCatalogSchema()} />
       <Hero />
       <ClientsStrip />
       <FeatureBento />

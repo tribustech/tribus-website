@@ -1,18 +1,30 @@
-import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { WorkModelFlow } from "@/components/sections/WorkModelFlow";
 import { CTA } from "@/components/sections/CTA";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, serviceCatalogSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Services",
   description:
     "Web and mobile development, databases, cloud infrastructure and UI/UX — the full range of what Tribus builds, and the stack we build it on.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          serviceCatalogSchema(),
+        ]}
+      />
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-24">
         <header className="max-w-3xl">
           <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-ink">

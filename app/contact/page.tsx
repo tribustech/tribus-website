@@ -1,11 +1,23 @@
-import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageMetadata, absoluteUrl } from "@/lib/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
     "Tell us what you're building. Reach the Tribus team in Bucharest by email, phone, or the form.",
+  path: "/contact",
+});
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${absoluteUrl("/contact")}#contact`,
+  name: "Contact Tribus Technologies",
+  url: absoluteUrl("/contact"),
+  mainEntity: { "@id": `${site.url}/#organization` },
 };
 
 const CONTACT_ITEMS = [
@@ -17,6 +29,15 @@ const CONTACT_ITEMS = [
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-5 pb-8 pt-16 sm:px-8 sm:pt-24">
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+          contactPageSchema,
+        ]}
+      />
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-ink">

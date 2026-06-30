@@ -1,17 +1,20 @@
-import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { GroupPhotos } from "@/components/sections/GroupPhotos";
 import { TeamGrid } from "@/components/sections/TeamGrid";
 import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CTA } from "@/components/sections/CTA";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema, teamSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description:
     "Tribus is a Bucharest-based team of experienced developers building people-centric software. Your success, is our success.",
-};
+  path: "/about",
+});
 
 const VALUES = [
   {
@@ -31,6 +34,15 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+          ...teamSchema(),
+        ]}
+      />
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-24">
         <header className="max-w-3xl">
           <p className="mb-3 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-teal-ink">
