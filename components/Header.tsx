@@ -36,14 +36,15 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-ink/10 bg-paper/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
+    <>
+      <header
+        className={cn(
+          "sticky top-0 z-50 transition-all duration-300",
+          scrolled
+            ? "border-b border-ink/10 bg-paper/80 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent",
+        )}
+      >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
@@ -118,6 +119,7 @@ export function Header() {
           </div>
         </button>
       </div>
+      </header>
 
       <AnimatePresence>
         {open && (
@@ -126,7 +128,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-0 z-40 bg-paper px-5 pt-24 md:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-paper px-5 pt-24 md:hidden"
           >
             <nav className="flex flex-col gap-2">
               {site.nav.map((item, i) => (
@@ -154,6 +156,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
