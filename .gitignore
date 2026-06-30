@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# source docs / decks kept locally, not served (avoid bloating git history)
+/*.pdf
+
 # debug
 npm-debug.log*
 yarn-debug.log*

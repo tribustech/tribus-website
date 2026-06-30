@@ -83,4 +83,10 @@ export const team: TeamMember[] = [
     img: "/images/team/people/sabin.webp",
     accent: "green",
   },
+  {
+    name: "Marius Paraschiv",
+    role: "PHP Developer",
+    img: "/images/team/people/marius.webp",
+    accent: "coral",
+  },
 ];

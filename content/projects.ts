@@ -193,12 +193,12 @@ export const projects: Project[] = [
   {
     slug: "werk24",
     name: "WERK24",
-    tagline: "Connecting people with work, around the clock.",
+    tagline: "AI that turns engineering drawings into data.",
     description:
-      "A platform matching workers and opportunities with a fast, mobile-first flow for listings, applications and scheduling.",
+      "The web platform for Werk24 — an AI engine that reads technical engineering drawings and extracts dimensions, tolerances, GD&T, materials and threads into structured data in seconds. Tribus built the interface that lets manufacturing and procurement teams upload drawings, review the extractions and wire the results straight into their own systems — no templates, no training data.",
     platforms: ["Web"],
-    industry: "HR & Recruitment",
-    tech: ["React", "Python"],
+    industry: "Manufacturing",
+    tech: ["React", "Python", "AI"],
     accent: "blue",
     year: 2024,
     featured: false,

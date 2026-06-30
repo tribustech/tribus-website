@@ -1,11 +1,35 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { Float } from "@/components/motion/Float";
+import { AnimatedCounter } from "@/components/motion/AnimatedCounter";
 import { PhoneFrame } from "@/components/devices/PhoneFrame";
 import { cn } from "@/lib/utils";
 
 const LAVENDER = "bg-gradient-to-b from-[#f1f1fc] to-[#e6e7f6]";
+
+// Headline track-record figures (company-wide totals, not just the cases in
+// content/projects.ts). Render as real numbers — not decorative bars.
+const PROOF = [
+  { value: 100, suffix: "+", label: "Successful projects" },
+  { value: 16, suffix: "", label: "Industries served" },
+  { value: 10, suffix: "+", label: "Countries reached" },
+  { value: 20, suffix: "+", label: "Technologies" },
+] as const;
+
+// Brand logos shown on the stack card. SVGs self-hosted under public/images/tech
+// (sourced from devicon — simple-icons lacks AWS/Azure for trademark reasons).
+const STACK = [
+  { name: "React", src: "/images/tech/react.svg" },
+  { name: "Next.js", src: "/images/tech/nextjs.svg" },
+  { name: ".NET", src: "/images/tech/dotnetcore.svg" },
+  { name: "NestJS", src: "/images/tech/nestjs.svg" },
+  { name: "AWS", src: "/images/tech/aws.svg" },
+  { name: "Azure", src: "/images/tech/azure.svg" },
+  { name: "Node.js", src: "/images/tech/nodejs.svg" },
+  { name: "TypeScript", src: "/images/tech/typescript.svg" },
+] as const;
 
 type TrioCard = {
   slug: string;
@@ -126,18 +150,29 @@ export function FeatureBento() {
           </div>
 
           <div className="relative h-[22rem] sm:h-[24rem]">
-            {/* Card A — what we ship */}
+            {/* Card A — proof in real numbers */}
             <Float
               amplitude={7}
               duration={8}
               className="absolute left-0 top-2 z-10 w-[66%] max-w-[320px]"
             >
               <div className="rounded-2xl bg-white p-5 shadow-[0_20px_45px_-15px_rgba(40,40,80,0.3)] ring-1 ring-ink/5">
-                <p className="mb-4 text-sm font-semibold text-ink">What we ship</p>
-                <ShipRow color="bg-teal" label="Web apps" w="w-[90%]" />
-                <ShipRow color="bg-indigo" label="Mobile apps" w="w-[80%]" />
-                <ShipRow color="bg-amber" label="Cloud & infra" w="w-[65%]" />
-                <ShipRow color="bg-coral" label="UI / UX" w="w-[72%]" last />
+                <p className="mb-4 text-sm font-semibold text-ink">Track record</p>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {PROOF.map((m) => (
+                    <div
+                      key={m.label}
+                      className="rounded-xl bg-paper px-3 py-2.5 ring-1 ring-ink/5"
+                    >
+                      <div className="font-display text-2xl font-bold leading-none tracking-tight text-ink">
+                        <AnimatedCounter value={m.value} suffix={m.suffix} />
+                      </div>
+                      <p className="mt-1 text-xs font-medium leading-tight text-ink-soft">
+                        {m.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Float>
 
@@ -150,17 +185,23 @@ export function FeatureBento() {
             >
               <div className="rounded-2xl bg-white p-5 shadow-[0_20px_45px_-15px_rgba(40,40,80,0.3)] ring-1 ring-ink/5">
                 <p className="mb-3 text-sm font-semibold text-ink">The stack</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["React", "Next.js", "React Native", "NestJS", "AWS", "Supabase"].map(
-                    (t) => (
-                      <span
-                        key={t}
-                        className="rounded-full bg-paper px-2.5 py-1 text-xs font-medium text-ink-soft ring-1 ring-ink/5"
-                      >
-                        {t}
-                      </span>
-                    ),
-                  )}
+                <div className="grid grid-cols-4 gap-2">
+                  {STACK.map((t) => (
+                    <div
+                      key={t.name}
+                      title={t.name}
+                      className="flex h-11 items-center justify-center rounded-xl bg-paper ring-1 ring-ink/5"
+                    >
+                      <Image
+                        src={t.src}
+                        alt={t.name}
+                        width={28}
+                        height={28}
+                        unoptimized
+                        className="h-6 w-auto max-w-[72%] object-contain"
+                      />
+                    </div>
+                  ))}
                 </div>
                 <div className="mt-4 flex items-center gap-2 rounded-xl bg-green/10 px-3 py-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green text-[11px] text-white">
@@ -176,27 +217,5 @@ export function FeatureBento() {
         </div>
       </Reveal>
     </Section>
-  );
-}
-
-function ShipRow({
-  color,
-  label,
-  w,
-  last = false,
-}: {
-  color: string;
-  label: string;
-  w: string;
-  last?: boolean;
-}) {
-  return (
-    <div className={cn("flex items-center gap-3", !last && "mb-3")}>
-      <span className={cn("h-2.5 w-2.5 shrink-0 rounded-full", color)} />
-      <span className="w-28 shrink-0 text-sm text-ink-soft">{label}</span>
-      <span className="h-2 flex-1 rounded-full bg-paper-deep">
-        <span className={cn("block h-full rounded-full", color, w)} />
-      </span>
-    </div>
   );
 }
