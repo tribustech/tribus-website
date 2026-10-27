@@ -37,7 +37,7 @@ export default function PinpointSupportPage() {
       <p>
         Manage or cancel your subscription in your App Store or Google Play
         account settings. To restore a purchase on a new device, sign in and
-        use <em>Restore purchases</em> in the app.
+        tap <em>Restore</em> on the Pinpoint+ screen.
       </p>
 
       <h2>Delete your account</h2>
