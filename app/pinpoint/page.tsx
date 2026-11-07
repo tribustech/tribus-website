@@ -25,7 +25,12 @@ export default function PinpointPage() {
         <li>Play live duels with friends.</li>
       </ul>
       <p>
-        Available on the App Store and Google Play. Questions? Write to{" "}
+        Available on the{" "}
+        <a href="https://apps.apple.com/app/id6826556921">App Store</a> and{" "}
+        <a href="https://play.google.com/store/apps/details?id=com.tribustech.pinpoint">
+          Google Play
+        </a>
+        . Questions? Write to{" "}
         <a href={`mailto:${site.email}`}>{site.email}</a>.
       </p>
       <p>
